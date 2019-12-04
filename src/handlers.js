@@ -2,23 +2,23 @@ const fs = require("fs");
 const getData = require("./queries/getData.js");
 const queryString = require("querystring");
 const postData = require("./queries/postData.js");
-
+const path = require("path");
 
 const handleHome = response => {
   const filepath = path.join(__dirname, "..", "public", "index.html");
-  readFile(filepath, (err, file) => {
+  fs.readFile(filepath, (err, file) => {
     if (err) return serverError(err, response);
     response.writeHead(200, {"Content-Type": "text/html"});
     response.end(file);
   });
 };
 
-const handle404 = (err, response) => {
+const handle404 = (response) => {
   let filePath = path.join(__dirname, "../public/not-found.html");
   fs.readFile(filePath, (err, file) => {
     if (err) {
       console.log(err); 
-      response.writeHead(500, {"content-type": text/html});
+      response.writeHead(500, {"content-type": "text/html"});
       response.end("A problem has occurred on our end - sorry folks!");
     } else {
       response.writeHead(404, {"content-type": "text/html"});
@@ -26,9 +26,7 @@ const handle404 = (err, response) => {
     }
   })
 }
-{
-  response.writeHead(500, {"Content-Type": text/html})
-}
+
 
 const handleGettingUsers = response => {
   getData((err, res) => {
