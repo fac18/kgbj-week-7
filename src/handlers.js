@@ -62,6 +62,7 @@ const handleCreateNewUser = (url, request, response) => {
     console.log("I am the house", house);
   
     postData(name, house, points, (err, res) => {
+
       if (err) {
         response.writeHead(500, "Content-Type: text/html");
         response.end(
