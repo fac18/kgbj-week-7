@@ -6,7 +6,8 @@
   "scripts": {
     "test-app": "tape tests/app-tests.js | tap-spec",
     "test-db": "echo \"Error: no test specified\" && exit 1",
-    "test-server": "supertest tape tests/server.js | tap-spec"
+    "test-server": "supertest tape tests/server.js | tap-spec",
+    "start": "node src/server.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "tap": "^14.10.2",
     "tap-spec": "^5.0.0",
     "tape": "^4.11.0",
+    "start": "^5.1.0",
     "url": "^0.11.0"
   }
 }

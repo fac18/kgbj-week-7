@@ -84,7 +84,8 @@ const handlePublic = (response, endpoint) => {
     svg: "image/svg+xml",
     jpeg: "image/jpeg",
     jpg: "image/jpg",
-    gif: "image/gif"
+    gif: "image/gif",
+    png: "image/png"
   };
   const filePath = path.join(__dirname, "..", endpoint);
   fs.readFile(filePath, (error, file) => {
