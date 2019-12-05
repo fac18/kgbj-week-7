@@ -43,3 +43,11 @@ function request(url, cb) {
 
   
   request('/houses', updateDom);
+
+  const button = document.querySelector('submit-button');
+  button.addEventListener('click', () => {
+    window.scrollTo(0,document.body.scrollHeight);
+  })
+
+  
+
