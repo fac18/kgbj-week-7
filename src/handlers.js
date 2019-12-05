@@ -58,8 +58,7 @@ const handleCreateNewUser = (url, request, response) => {
     let answers = Object.values(results);
     let name = answers[0];
     let house = sortingHat(answers);
-    console.log("I am the house", house);
-  
+
     postData(name, house, (err, res) => {
       if (err) {
         response.writeHead(500, "Content-Type: text/html");
