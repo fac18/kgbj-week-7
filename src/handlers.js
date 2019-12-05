@@ -17,7 +17,7 @@ const handle404 = (response) => {
   let filePath = path.join(__dirname, "../public/not-found.html");
   fs.readFile(filePath, (err, file) => {
     if (err) {
-      console.log(err); 
+      console.log(err);
       response.writeHead(500, {"content-type": "text/html"});
       response.end("A problem has occurred on our end - sorry folks!");
     } else {
@@ -48,8 +48,8 @@ const handleCreateNewUser = (url, request, response) => {
     data += chunk;
   });
   request.on("end", () => {
-    const name = queryString.parse(data).name;
     const house = queryString.parse(data).house;
+    const { name, q1, q2, q3, q4, q5, q6, q7 } = queryString.parse(data);
     postData(name, house, (err, res) => {
       if (err) {
         response.writeHead(500, "Content-Type: text/html");
@@ -84,8 +84,8 @@ const handlePublic = (response, endpoint) => {
     js: "application/js",
     ico: "image/x-icon",
     svg: "image/svg+xml",
-    jpeg: "image/jpeg", 
-    jpg: "image/jpg", 
+    jpeg: "image/jpeg",
+    jpg: "image/jpg",
     gif: "image/gif",
     png: "image/png"
   };
@@ -112,8 +112,8 @@ const handlePublic = (response, endpoint) => {
 };
 
 module.exports = {
-  handleGettingUsers, 
-  handleCreateNewUser, 
+  handleGettingUsers,
+  handleCreateNewUser,
   handleHome,
   handle404,
   handlePublic
