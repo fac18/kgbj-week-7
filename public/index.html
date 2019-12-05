@@ -11,7 +11,7 @@
   <body>
     <h1>Which Hogwarts house are you in?</h1>
 
-    <section>
+    <section class="quiz-container">
       <h2>Answer the sorting hat's questions...</h2>
       <form class="form" action="/create-user" method="post">
         <input
@@ -83,6 +83,15 @@
       </form>
     </section>
 
-    <script src="public/app.js"></script>
+    <section class="table-container">
+      <table id="users-table">
+        <tr>
+          <th>Name</th>
+          <th>House</th>
+        </tr>
+      </table>
+    </section>
+
+    <script src="public/index.js"></script>
   </body>
 </html>
