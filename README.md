@@ -40,11 +40,11 @@ I can earn points depending on my answers<br>
 
 # Schema
 
-![](schema.png)
+![Schema](image/schema.png)
 
 # Architecture
 
-![](architecture.png)
+![Architecture](image/architecture.png)
 
 # DATABASE
 
