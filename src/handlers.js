@@ -42,6 +42,15 @@ const handleGettingUsers = response => {
   });
 };
 
+// let ourQuestions = [q1, q2, q3, q4, q5, q6, q7];
+
+// const questions = (ourQuestions) =>
+// ourQuestions.reduce(
+//   (a,b,i,arr) =>
+//   (arr.filter(v=>v===a).length>=arr.filter(v=>v===b).length?a:b),
+// null)
+
+
 const handleCreateNewUser = (url, request, response) => {
   let data = "";
   request.on("data", chunk => {
@@ -50,6 +59,7 @@ const handleCreateNewUser = (url, request, response) => {
   request.on("end", () => {
     const house = queryString.parse(data).house;
     const { name, q1, q2, q3, q4, q5, q6, q7 } = queryString.parse(data);
+    // console.log(queryString.parse(data).body);
     postData(name, house, (err, res) => {
       if (err) {
         response.writeHead(500, "Content-Type: text/html");
