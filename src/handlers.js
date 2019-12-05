@@ -8,25 +8,24 @@ const handleHome = response => {
   const filepath = path.join(__dirname, "..", "public", "index.html");
   fs.readFile(filepath, (err, file) => {
     if (err) return serverError(err, response);
-    response.writeHead(200, {"Content-Type": "text/html"});
+    response.writeHead(200, { "Content-Type": "text/html" });
     response.end(file);
   });
 };
 
-const handle404 = (response) => {
+const handle404 = response => {
   let filePath = path.join(__dirname, "../public/not-found.html");
   fs.readFile(filePath, (err, file) => {
     if (err) {
       console.log(err);
-      response.writeHead(500, {"content-type": "text/html"});
+      response.writeHead(500, { "content-type": "text/html" });
       response.end("A problem has occurred on our end - sorry folks!");
     } else {
-      response.writeHead(404, {"content-type": "text/html"});
+      response.writeHead(404, { "content-type": "text/html" });
       response.end(file);
     }
-  })
-}
-
+  });
+};
 
 const handleGettingUsers = response => {
   getData((err, res) => {
@@ -63,17 +62,16 @@ const handleCreateNewUser = (url, request, response) => {
     postData(name, house, (err, res) => {
       if (err) {
         response.writeHead(500, "Content-Type: text/html");
-        response.end("<h1>Sorry, there's been an error at hat HQ</h1>");
+        response.end(
+          "<h1>Sorry, there's been an error at hat HQ, are you a muggle?</h1>"
+        );
         console.log(err);
       } else {
         response.writeHead(301, {
           "Content-type": "text/html",
           Location: "/houses"
         });
-        fs.readFile(__dirname + "/../public/houses.html", function(
-          error,
-          file
-        ) {
+        fs.readFile(__dirname + "./../public/houses.html", (error, file) => {
           if (error) {
             console.log(error);
             return;
@@ -127,4 +125,4 @@ module.exports = {
   handleHome,
   handle404,
   handlePublic
-}
+};
