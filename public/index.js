@@ -12,24 +12,27 @@ function request(url, cb) {
     xhr.send();
   }
   
-  function updateTable(err, data) {
+  function updateDom(err, data) {
     if (err) {
       console.error(err);
     } else {
       var users = JSON.parse(data);
-      var table = document.getElementById('users-table');
+      console.log(users);
+      var table = document.getElementById("users-table");
       /* create a row in table for each user returned from DB */
       users.forEach(function(user) {
-        var row = document.createElement('tr');
-        var name = document.createElement('td');
+        var row = document.createElement("tr");
+        var name = document.createElement("td");
         name.textContent = user.name;
         row.appendChild(name);
-        var house = document.createElement('td');
-        house.textContent = user.location;
+        var location = document.createElement("td");
+        location.textContent = user.house_name;
         row.appendChild(location);
         table.appendChild(row);
       });
     }
   }
+
+
   
-  request('/users', updateTable);
+  request('/houses', updateDom);
