@@ -1,3 +1,8 @@
 body {
   background-image: url("../public/mobile-first-background.jpg");
+  color: white;
+}
+
+section {
+  display: flex;
 }
