@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test node tests/db_tests.js",
+    "test": "NODE_ENV=test tape tests/*.tests.js | tap-spec",
     "start": "node src/server.js"
   },
   "repository": {
