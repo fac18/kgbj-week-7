@@ -5,6 +5,5 @@ const postData = require("../src/queries/postData");
 
 tape("tape is working", t => {
   t.equals(1, 1, "one equals one");
-  console.log("app-test-file");
   t.end();
 });
