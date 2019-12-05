@@ -4,9 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Sorting Hat</title>
+    <link rel="shortcut icon" type="image/png" href="public/img/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="public/main.css" />
 </head>
 <body>
-  <h1>poop</h1>  
+    <h1>Which Hogwarts house are you in?</h1>
+
+    <section>
+        <h2>Answer the sorting hat's questions...</h2>
+        <form class="form" action="/create-user" method="post">
+            <input class="name-entry" placeholder="Tell me your name" aria-label="enter your name" required />
+            
+            <p>1. What is your favourite colour?</p>
+            <input type="radio" name="q1" value="gryffindor"> Dark red<br>
+            <input type="radio" name="q1" value="hufflepuff"> Light orange<br>
+            <input type="radio" name="q1" value="ravenclaw"> Dark blue<br>
+            <input type="radio" name="q1" value="slytherin"> Bright green<br>
+
+            <p>2. Which film do you want to see?</p>
+            <input type="radio" name="q2" value="gryffindor"> An exciting action movie<br>
+            <input type="radio" name="q2" value="hufflepuff"> A cute animation<br>
+            <input type="radio" name="q2" value="ravenclaw"> A serious documentary<br>
+            <input type="radio" name="q2" value="slytherin"> A scary horror film<br>
+
+            <p>3. Which is most important to you?</p>
+            <input type="radio" name="q3" value="gryffindor"> Being brave<br>
+            <input type="radio" name="q3" value="hufflepuff"> Being friendly<br>
+            <input type="radio" name="q3" value="ravenclaw"> Being intelligent<br>
+            <input type="radio" name="q3" value="slytherin"> Being successful<br>
+
+            <p>4. Which subject do you like most?</p>
+            <input type="radio" name="q4" value="gryffindor"> Maths<br>
+            <input type="radio" name="q4" value="hufflepuff"> Science<br>
+            <input type="radio" name="q4" value="ravenclaw"> History<br>
+            <input type="radio" name="q4" value="slytherin"> PE<br>
+
+            <p>5. Which best describes you?</p>
+            <input type="radio" name="q5" value="gryffindor"> Brave and bold<br>
+            <input type="radio" name="q5" value="hufflepuff"> Shy and gentle<br>
+            <input type="radio" name="q5" value="ravenclaw"> Honest and practical<br>
+            <input type="radio" name="q5" value="slytherin"> Clever and competitive<br>
+
+            <p>6. What would you do if you found money on the ground?</p>
+            <input type="radio" name="q6" value="gryffindor"> Put it in the bank<br>
+            <input type="radio" name="q6" value="hufflepuff"> Use it to help the poor<br>
+            <input type="radio" name="q6" value="ravenclaw"> Give it to the police<br>
+            <input type="radio" name="q6" value="slytherin"> Buy what you want<br>
+
+            <p>7. What is your favourite weather?</p>
+            <input type="radio" name="q7" value="gryffindor">  Warm and dry<br>
+            <input type="radio" name="q7" value="hufflepuff"> Bright and sunny<br>
+            <input type="radio" name="q7" value="ravenclaw"> Cool and windy<br>
+            <input type="radio" name="q7" value="slytherin"> Dark and rainy<br>
+        
+            <button type="submit" name="button" class="submit-button" aria-label="Submit button">Sort!</button>
+        </form>
+    </section>
+
+
+
+
+
+    <script src="public/app.js"></script>
 </body>
 </html>
+
