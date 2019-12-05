@@ -22,12 +22,19 @@ function request(url, cb) {
       /* create a row in table for each user returned from DB */
       users.forEach(function(user) {
         var row = document.createElement("tr");
+        
         var name = document.createElement("td");
         name.textContent = user.name;
         row.appendChild(name);
+
         var location = document.createElement("td");
         location.textContent = user.house_name;
         row.appendChild(location);
+        table.appendChild(row);
+
+        var pointsRow = document.createElement("td");
+        pointsRow.textContent = user.points;
+        row.appendChild(pointsRow);
         table.appendChild(row);
       });
     }
