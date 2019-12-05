@@ -37,6 +37,8 @@ const handleGettingUsers = response => {
     }
   });
 };
+
+
 const sortingHat = answers =>
   answers.reduce(
     (a, b, i, arr) =>

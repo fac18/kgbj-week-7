@@ -1,8 +1,85 @@
+* {
+  box-sizing: border-box;
+  font-family: 'IM Fell English SC', serif;
+}
+
 body {
   background-image: url("../public/mobile-first-background.jpg");
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
 }
 
-section {
+h1, h2 {
+  font-family: 'IM Fell English SC', serif;
+}
+
+h1 {
+  color: #FFD700;
+}
+
+.quiz-container {
+  width: 80vw;
+  background-color: rgba(0,0,0,0.9);
+  border-radius: 10px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+.table-container {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 80vw;
+  background-color: rgba(0,0,0,0.9);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:40px;
+}
+
+.name-entry {
+  margin-top:20px;
+  margin-bottom: 20px;
+  height: 2.5rem;
+  width: 30vw;
+  align-self: center;
+  font-size: 1.5rem;
+  padding: 10px;
+}
+
+button {
+  margin-top: 40px;
+  border: none;
+  background-color: #FFD700;
+  color: black;
+  width: 5rem;
+  height: 2.5rem;
+  border-radius: 3px;
+  font-size: 1.5rem;
+}
+
+table {
+  margin-top: 20px;
+}
+
+th {
+  padding:20px;
+  width: 15vw;
+  text-align: center;
+  border: 2px solid #FFD700;
+  color: #FFD700;
+}
+
+
+td {
+  padding:20px;
+  width: 15vw;
+  text-align: center;
+  border: 2px solid #FFD700;
 }
