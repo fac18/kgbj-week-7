@@ -3,7 +3,6 @@ const getData = require("./queries/getData.js");
 const queryString = require("querystring");
 const postData = require("./queries/postData.js");
 const path = require("path");
-
 const handleHome = response => {
   const filepath = path.join(__dirname, "..", "public", "index.html");
   fs.readFile(filepath, (err, file) => {
@@ -12,7 +11,6 @@ const handleHome = response => {
     response.end(file);
   });
 };
-
 const handle404 = response => {
   let filePath = path.join(__dirname, "../public/not-found.html");
   fs.readFile(filePath, (err, file) => {
@@ -26,7 +24,6 @@ const handle404 = response => {
     }
   });
 };
-
 const handleGettingUsers = response => {
   getData((err, res) => {
     if (err) {
@@ -40,7 +37,6 @@ const handleGettingUsers = response => {
     }
   });
 };
-
 const sortingHat = answers =>
   answers.reduce(
     (a, b, i, arr) =>
@@ -49,23 +45,19 @@ const sortingHat = answers =>
         : b,
     null
   );
-
 const handleCreateNewUser = (url, request, response) => {
   let data = "";
   request.on("data", chunk => {
     data += chunk;
   });
   request.on("end", () => {
-    // const house = queryString.parse(data).house;
-    // const { name, q1, q2, q3, q4, q5, q6, q7 } = queryString.parse(data);
+
     const results = queryString.parse(data);
     let answers = Object.values(results);
     let name = answers[0];
-
     let house = sortingHat(answers);
-
     console.log("I am the house", house);
-    // console.log(queryString.parse(data).body);
+  
     postData(name, house, (err, res) => {
       if (err) {
         response.writeHead(500, "Content-Type: text/html");
@@ -91,7 +83,6 @@ const handleCreateNewUser = (url, request, response) => {
     });
   });
 };
-
 const handlePublic = (response, endpoint) => {
   const extension = endpoint.split(".")[1];
   const extensionType = {
@@ -126,7 +117,6 @@ const handlePublic = (response, endpoint) => {
     }
   });
 };
-
 module.exports = {
   handleGettingUsers,
   handleCreateNewUser,

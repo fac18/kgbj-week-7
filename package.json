@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test-app": "tape tests/app-tests.js | tap-spec",
-    "test-db": "echo \"Error: no test specified\" && exit 1",
-    "test-server": "supertest tape tests/server.js | tap-spec",
+    "test": "NODE_ENV=test node tests/db_tests.js",
     "start": "node src/server.js"
   },
   "repository": {
@@ -17,17 +15,16 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-  "url": "https://github.com/fac18/kgbj-week-6/issues"
+    "url": "https://github.com/fac18/kgbj-week-6/issues"
   },
   "homepage": "https://github.com/fac18/kgbj-week-6#readme",
   "dependencies": {
     "env2": "^2.2.2",
     "pg": "^7.14.0",
+    "start": "^5.1.0",
     "supertest": "^4.0.2",
-    "tap": "^14.10.2",
     "tap-spec": "^5.0.0",
     "tape": "^4.11.0",
-    "start": "^5.1.0",
     "url": "^0.11.0"
   }
 }
