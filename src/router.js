@@ -1,6 +1,3 @@
-// const http = require("http");
-// const pg = require("pg");
-
 const {
   handleGettingUsers,
   handleCreateNewUser,

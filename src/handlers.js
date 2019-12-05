@@ -41,14 +41,14 @@ const handleGettingUsers = response => {
   });
 };
 
-// let ourQuestions = [q1, q2, q3, q4, q5, q6, q7];
-
-// const questions = (ourQuestions) =>
-// ourQuestions.reduce(
-//   (a,b,i,arr) =>
-//   (arr.filter(v=>v===a).length>=arr.filter(v=>v===b).length?a:b),
-// null)
-
+const sortingHat = answers =>
+  answers.reduce(
+    (a, b, i, arr) =>
+      arr.filter(v => v === a).length >= arr.filter(v => v === b).length
+        ? a
+        : b,
+    null
+  );
 
 const handleCreateNewUser = (url, request, response) => {
   let data = "";
@@ -56,8 +56,15 @@ const handleCreateNewUser = (url, request, response) => {
     data += chunk;
   });
   request.on("end", () => {
-    const house = queryString.parse(data).house;
-    const { name, q1, q2, q3, q4, q5, q6, q7 } = queryString.parse(data);
+    // const house = queryString.parse(data).house;
+    // const { name, q1, q2, q3, q4, q5, q6, q7 } = queryString.parse(data);
+    const results = queryString.parse(data);
+    let answers = Object.values(results);
+    let name = answers[0];
+
+    let house = sortingHat(answers);
+
+    console.log("I am the house", house);
     // console.log(queryString.parse(data).body);
     postData(name, house, (err, res) => {
       if (err) {
@@ -69,9 +76,10 @@ const handleCreateNewUser = (url, request, response) => {
       } else {
         response.writeHead(301, {
           "Content-type": "text/html",
-          Location: "/houses"
+          Location: "/"
         });
-        fs.readFile(__dirname + "./../public/houses.html", (error, file) => {
+        const filePath = path.join(__dirname, "..", "public/index.html");
+        fs.readFile(filePath, (error, file) => {
           if (error) {
             console.log(error);
             return;
