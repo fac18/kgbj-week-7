@@ -41,14 +41,6 @@ const handleGettingUsers = response => {
   });
 };
 
-// let ourQuestions = [q1, q2, q3, q4, q5, q6, q7];
-
-// const questions = (ourQuestions) =>
-// ourQuestions.reduce(
-//   (a,b,i,arr) =>
-//   (arr.filter(v=>v===a).length>=arr.filter(v=>v===b).length?a:b),
-// null)
-
 
 const handleCreateNewUser = (url, request, response) => {
   let data = "";
