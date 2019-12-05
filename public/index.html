@@ -14,8 +14,8 @@
     <section>
         <h2>Answer the sorting hat's questions...</h2>
         <form class="form" action="/create-user" method="post">
-            <input class="name-entry" placeholder="Tell me your name" aria-label="enter your name" required />
-            
+            <input name="name" class="name-entry" placeholder="Tell me your name" aria-label="enter your name" required />
+
             <p>1. What is your favourite colour?</p>
             <input type="radio" name="q1" value="gryffindor"> Dark red<br>
             <input type="radio" name="q1" value="hufflepuff"> Light orange<br>
@@ -57,7 +57,7 @@
             <input type="radio" name="q7" value="hufflepuff"> Bright and sunny<br>
             <input type="radio" name="q7" value="ravenclaw"> Cool and windy<br>
             <input type="radio" name="q7" value="slytherin"> Dark and rainy<br>
-        
+
             <button type="submit" name="button" class="submit-button" aria-label="Submit button">Sort!</button>
         </form>
     </section>
@@ -69,4 +69,3 @@
     <script src="public/app.js"></script>
 </body>
 </html>
-
