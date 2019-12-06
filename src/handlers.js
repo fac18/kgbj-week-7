@@ -47,6 +47,7 @@ const sortingHat = answers =>
         : b,
     null
   );
+
 const handleCreateNewUser = (url, request, response) => {
   let data = "";
   request.on("data", chunk => {
