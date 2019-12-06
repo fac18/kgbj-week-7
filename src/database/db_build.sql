@@ -22,10 +22,10 @@ INSERT INTO house (house_name, attributes) VALUES
 ('Ravenclaw', 'Honest and practical'),
 ('Slytherin', 'Clever and competitive');
 
-INSERT INTO users (name, house_name) VALUES
-('Jamie', 'Slytherin'),
-('Alex', 'Hufflepuff'),
-('Rosa', 'Hufflepuff'),
-('Beth', 'Hufflepuff');
+INSERT INTO users (name, house_name, points) VALUES
+('Jamie', 'Slytherin', -10),
+('Alex', 'Hufflepuff', 500),
+('Rosa', 'Hufflepuff', 500),
+('Beth', 'Hufflepuff', 500);
 
 COMMIT;
