@@ -26,27 +26,25 @@
 
 # User Journey
 
-**Founders & Coders sorting hat**
-*As a member of Founders & Coders, I would like to find out which house I am suited to...*
+**Founders & Coders sorting hat**<br>
 
-I can add my name to a database
-Through answering questions, I can see which house I am in
+*As a member of Founders & Coders, I would like to find out which house I am suited to...*<br>
+I can add my name to a database<br>
+Through answering questions, I can see which house I am in<br>
 
-**As a member of Founders & Coders who is interested in who my housemates are...**
+*As a member of Founders & Coders who is interested in who my housemates are...*<br>
+I can see a table of other users and their houses<br>
 
-I can see a table of other users and their houses
-
-**Additional requirements / stretch goals:**
-
-I can earn points depending on my answers
+*Additional requirements / stretch goals:*<br>
+I can earn points depending on my answers<br>
 
 # Schema
 
-![](schema.png)
+![Schema](image/schema.png)
 
 # Architecture
 
-![](architecture.png)
+![Architecture](image/architecture.png)
 
 # DATABASE
 

@@ -29,6 +29,11 @@ function request(url, cb) {
         location.textContent = user.house_name;
         row.appendChild(location);
         table.appendChild(row);
+
+        var pointsRow = document.createElement("td");
+        pointsRow.textContent = user.points;
+        row.appendChild(pointsRow);
+        table.appendChild(row);
       });
     }
   }
