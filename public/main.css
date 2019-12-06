@@ -21,6 +21,10 @@ h1 {
   color: #FFD700;
 }
 
+p {
+  font-size: 1.2rem;
+}
+
 .quiz-container {
   width: 80vw;
   background-color: rgba(0,0,0,0.9);
@@ -29,6 +33,9 @@ h1 {
   flex-direction: column;
   align-items: center;
   padding: 40px;
+}
+
+form {
 }
 
 .table-container {
@@ -51,6 +58,9 @@ h1 {
   align-self: center;
   font-size: 1.5rem;
   padding: 10px;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button {
@@ -63,6 +73,10 @@ button {
   border-radius: 3px;
   font-size: 1.5rem;
   cursor: pointer;
+  justify-self: center;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .fourohfour-button {
@@ -87,6 +101,7 @@ th {
   text-align: center;
   border: 2px solid #FFD700;
   color: #FFD700;
+  font-size: 1.2rem;
 }
 
 
@@ -95,4 +110,5 @@ td {
   width: 15vw;
   text-align: center;
   border: 2px solid #FFD700;
+  font-size: 1.2rem;
 }
