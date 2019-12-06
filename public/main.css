@@ -62,6 +62,7 @@ button {
   height: 2.5rem;
   border-radius: 3px;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .fourohfour-button {
@@ -73,6 +74,7 @@ button {
   height: 2.5rem;
   border-radius: 3px;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 table {
