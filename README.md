@@ -49,11 +49,11 @@ I can earn points depending on my answers<br>
 
 # Schema
 
-![Schema](./image/schema.png)
+![Schema](./public/image/schema.png)
 
 # Architecture
 
-![Architecture](./image/architecture.png)
+![Architecture](./public/image/architecture.png)
 
 # Sorting Hat Function
 
@@ -76,12 +76,12 @@ It repeats the process for every answer until it finds the one that repeats the 
 
 # Tests
 
-![Tests](./image/tests.png)
+![Tests](./public/image/tests.png)
 
 # sql
 
-![DB](./image/createdb.png)
-![DATABASE](./image/terminaldb.png)
+![DB](./public/image/createdb.png)
+![DATABASE](./public/image/terminaldb.png)
 
 # Style
 

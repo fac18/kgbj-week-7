@@ -5,17 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Sorting Hat</title>
-    <link rel="shortcut icon" type="image/png" href="../image/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="./public/image/favicon.png" />
     <link rel="stylesheet" type="text/css" href="public/main.css" />
     <link href="https://fonts.googleapis.com/css?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
   </head>
   <body>
-      <!-- <embed src="/public/harry-potter-theme-song-Htaj3o3JD8I.mp3" autostart="true" loop="true"
-      width="2" height="0">
-      </embed>
-      <noembed>
-      <bgsound src="/public/harry-potter-theme-song-Htaj3o3JD8I.mp" loop="infinite">
-      </noembed> -->
     <h1>which hogwarts house are you in?</h1>
 
     <section class="quiz-container">
@@ -30,54 +24,61 @@
         />
 
         <p>1. What is your favourite colour?</p>
-        <input type="radio" name="q1" value="gryffindor" required /> Dark red<br />
-        <input type="radio" name="q1" value="hufflepuff" /> Light orange<br />
-        <input type="radio" name="q1" value="ravenclaw" /> Dark blue<br />
-        <input type="radio" name="q1" value="slytherin" /> Bright green<br />
+        <input type="radio" name="q1" value="gryffindor" aria-label="dark red" required /> Dark red<br />
+        <input type="radio" name="q1" value="hufflepuff" aria-label="Light orange" /> Light orange<br />
+        <input type="radio" name="q1" value="ravenclaw" aria-label="Dark blue" /> Dark blue<br />
+        <input type="radio" name="q1" value="slytherin" aria-label="Bright green" /> Bright green<br />
 
         <p>2. Which film do you want to see?</p>
-        <input type="radio" name="q2" value="gryffindor" required /> An exciting action
+        <input type="radio" name="q2" value="gryffindor" aria-label="An exciting action
+        movie" required /> An exciting action
         movie<br />
-        <input type="radio" name="q2" value="hufflepuff" /> A cute animation<br />
-        <input type="radio" name="q2" value="ravenclaw" /> A serious
+        <input type="radio" name="q2" value="hufflepuff" aria-label="A cute animation" /> A cute animation<br />
+        <input type="radio" name="q2" value="ravenclaw" aria-label="A serious
+        documentary" /> A serious
         documentary<br />
-        <input type="radio" name="q2" value="slytherin" /> A scary horror
+        <input type="radio" name="q2" value="slytherin" aria-label="A scary horror
+        film<" /> A scary horror
         film<br />
 
         <p>3. Which is most important to you?</p>
-        <input type="radio" name="q3" value="gryffindor" required /> Being brave<br />
-        <input type="radio" name="q3" value="hufflepuff" /> Being friendly<br />
-        <input type="radio" name="q3" value="ravenclaw" /> Being intelligent<br />
-        <input type="radio" name="q3" value="slytherin" /> Being successful<br />
+        <input type="radio" name="q3" value="gryffindor" aria-label="Being brave" required /> Being brave<br />
+        <input type="radio" name="q3" value="hufflepuff" aria-label="Being friendly" /> Being friendly<br />
+        <input type="radio" name="q3" value="ravenclaw" aria-label="Being intelligent" /> Being intelligent<br />
+        <input type="radio" name="q3" value="slytherin" aria-label="Being successful" /> Being successful<br />
 
         <p>4. Which subject do you like most?</p>
-        <input type="radio" name="q4" value="gryffindor" required /> Maths<br />
-        <input type="radio" name="q4" value="hufflepuff" /> Science<br />
-        <input type="radio" name="q4" value="ravenclaw" /> History<br />
-        <input type="radio" name="q4" value="slytherin" /> PE<br />
+        <input type="radio" name="q4" value="gryffindor" aria-label="Maths" required /> Maths<br />
+        <input type="radio" name="q4" value="hufflepuff" aria-label="Science" /> Science<br />
+        <input type="radio" name="q4" value="ravenclaw" aria-label="History" /> History<br />
+        <input type="radio" name="q4" value="slytherin" aria-label="PE" /> PE<br />
 
         <p>5. Which best describes you?</p>
-        <input type="radio" name="q5" value="gryffindor" required /> Brave and bold<br />
-        <input type="radio" name="q5" value="hufflepuff" /> Shy and gentle<br />
-        <input type="radio" name="q5" value="ravenclaw" /> Honest and
+        <input type="radio" name="q5" value="gryffindor" aria-label="Brave and bold" required /> Brave and bold<br />
+        <input type="radio" name="q5" value="hufflepuff" aria-label="Shy and gentle" /> Shy and gentle<br />
+        <input type="radio" name="q5" value="ravenclaw" aria-label="Honest and
+        practical" /> Honest and
         practical<br />
-        <input type="radio" name="q5" value="slytherin" /> Clever and
+        <input type="radio" name="q5" value="slytherin" aria-label="Clever and competitive" /> Clever and
         competitive<br />
 
         <p>6. What would you do if you found money on the ground?</p>
-        <input type="radio" name="q6" value="gryffindor" required /> Put it in the
+        <input type="radio" name="q6" value="gryffindor" aria-label="Put it in the
+        bank" required /> Put it in the
         bank<br />
-        <input type="radio" name="q6" value="hufflepuff" /> Use it to help the
+        <input type="radio" name="q6" value="hufflepuff" aria-label="Use it to help the
+        poor" /> Use it to help the
         poor<br />
-        <input type="radio" name="q6" value="ravenclaw" /> Give it to the
+        <input type="radio" name="q6" value="ravenclaw" aria-label="Give it to the
+        police" /> Give it to the
         police<br />
-        <input type="radio" name="q6" value="slytherin" /> Buy what you want<br />
+        <input type="radio" name="q6" value="slytherin" aria-label="Buy what you want" /> Buy what you want<br />
 
         <p>7. What is your favourite weather?</p>
-        <input type="radio" name="q7" value="gryffindor" required /> Warm and dry<br />
-        <input type="radio" name="q7" value="hufflepuff" /> Bright and sunny<br />
-        <input type="radio" name="q7" value="ravenclaw" /> Cool and windy<br />
-        <input type="radio" name="q7" value="slytherin" /> Dark and rainy<br />
+        <input type="radio" name="q7" value="gryffindor" aria-label="Warm and dry" required /> Warm and dry<br />
+        <input type="radio" name="q7" value="hufflepuff" aria-label="Bright and sunny" /> Bright and sunny<br />
+        <input type="radio" name="q7" value="ravenclaw" aria-label="Cool and windy" /> Cool and windy<br />
+        <input type="radio" name="q7" value="slytherin" aria-label="Dark and rainy" /> Dark and rainy<br />
 
         <button
           type="submit"
