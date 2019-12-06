@@ -15,7 +15,7 @@ const router = (request, response) => {
     handleGettingUsers(response);
   } else if (endpoint === "/create-user") {
     handleCreateNewUser(endpoint, request, response);
-  } else if (endpoint.includes("/public")) {
+  } else if (endpoint.startsWith("/public")) {
     handlePublic(response, endpoint);
   } else {
     handle404(response);
