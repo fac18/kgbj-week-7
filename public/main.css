@@ -4,7 +4,7 @@
 }
 
 body {
-  background-image: url("../public/mobile-first-background.jpg");
+  background-image: url("../public/image/mobile-first-background.jpg");
   color: white;
   display: flex;
   flex-direction: column;
