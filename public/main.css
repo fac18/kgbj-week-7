@@ -15,9 +15,11 @@ body {
 
 h1, h2 {
   font-family: 'IM Fell English SC', serif;
-  margin: 5vw;
+  margin-left: 5vw;
+  margin-right: 5vw;
   text-align: center;
 }
+
 
 h1 {
   color: #FFD700;
@@ -51,11 +53,13 @@ h1 {
   height: 2.5rem;
   width: 100%;
   align-self: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   padding: 10px;
 }
 
 button {
+  text-align: center;
+  align-items: flex-end;
   margin-top: 40px;
   border: none;
   background-color: #FFD700;
@@ -71,8 +75,6 @@ table {
 }
 
 th {
-  padding:20px;
-  width: 15vw;
   text-align: center;
   border: 2px solid #FFD700;
   color: #FFD700;
@@ -80,14 +82,24 @@ th {
 
 
 td {
-  padding:20px;
-  width: 15vw;
+  padding:13px;
   text-align: center;
   border: 2px solid #FFD700;
 }
 
 @media (min-width: 600px) {
   .name-entry {
-    width: 18vw;
+    width: 15vw;
+    font-size: 1.5rem;
+  }
+  th {
+    padding:20px; 
+    width: 15vw;
+  }
+  
+  
+  td {
+    padding:20px;
+    width: 15vw;
   }
 }
