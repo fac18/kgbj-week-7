@@ -1,6 +1,8 @@
 
 # DEV setup
 
+
+
 # Requirements
 
 - [X] Simple web app with a node server and a database
@@ -40,11 +42,11 @@ I can earn points depending on my answers<br>
 
 # Schema
 
-![Schema](image/schema.png)
+![Schema](./image/schema.png)
 
 # Architecture
 
-![Architecture](image/architecture.png)
+![Architecture](./image/architecture.png)
 
 # DATABASE
 
