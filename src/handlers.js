@@ -59,10 +59,7 @@ const handleCreateNewUser = (url, request, response) => {
     let name = answers[0];
     let house = sortingHat(answers);
     let points = Math.ceil(Math.random() * 100);
-    console.log("I am the house", house);
-  
     postData(name, house, points, (err, res) => {
-
       if (err) {
         response.writeHead(500, "Content-Type: text/html");
         response.end(

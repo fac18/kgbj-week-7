@@ -4,7 +4,7 @@
 }
 
 body {
-  background-image: url("../public/mobile-first-background.jpg");
+  background-image: url("./image/mobile-first-background.jpg");
   color: white;
   display: flex;
   flex-direction: column;
@@ -25,6 +25,10 @@ h1 {
   color: #FFD700;
 }
 
+p {
+  font-size: 1.2rem;
+}
+
 .quiz-container {
   width: 80vw;
   background-color: rgba(0,0,0,0.9);
@@ -33,6 +37,9 @@ h1 {
   flex-direction: column;
   align-items: center;
   padding: 40px;
+}
+
+form {
 }
 
 .table-container {
@@ -55,6 +62,9 @@ h1 {
   align-self: center;
   font-size: 1.2rem;
   padding: 10px;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button {
@@ -68,6 +78,23 @@ button {
   height: 2.5rem;
   border-radius: 3px;
   font-size: 1.5rem;
+  cursor: pointer;
+  justify-self: center;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fourohfour-button {
+  margin-top: 40px;
+  border: none;
+  background-color: #FFD700;
+  color: black;
+  width: 30vw;
+  height: 2.5rem;
+  border-radius: 3px;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 table {
@@ -78,6 +105,7 @@ th {
   text-align: center;
   border: 2px solid #FFD700;
   color: #FFD700;
+  font-size: 1.2rem;
 }
 
 
@@ -85,6 +113,7 @@ td {
   padding:13px;
   text-align: center;
   border: 2px solid #FFD700;
+  font-size: 1.2rem;
 }
 
 @media (min-width: 600px) {
