@@ -34,7 +34,7 @@ test("insert user into the database", t => {
       t.deepEqual(result.length, 4, "length of result is 4");
     });
 
-    postData("Test", "Ravenclaw", (err, res) => {
+    postData("Test", "Ravenclaw", 28, (err, res) => {
       if (err) console.log(err);
 
       getData((err, result) => {
