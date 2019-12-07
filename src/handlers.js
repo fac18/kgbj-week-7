@@ -3,6 +3,7 @@ const getData = require("./queries/getData.js");
 const queryString = require("querystring");
 const postData = require("./queries/postData.js");
 const path = require("path");
+
 const handleHome = response => {
   const filepath = path.join(__dirname, "..", "public", "index.html");
   fs.readFile(filepath, (err, file) => {
@@ -11,6 +12,7 @@ const handleHome = response => {
     response.end(file);
   });
 };
+
 const handle404 = response => {
   let filePath = path.join(__dirname, "../public/not-found.html");
   fs.readFile(filePath, (err, file) => {
@@ -24,6 +26,9 @@ const handle404 = response => {
     }
   });
 };
+
+// Takes the response from the database and calls getData with a callback that handles err and res
+// If no error then stringify the database response and send it back to the front end. 
 const handleGettingUsers = response => {
   getData((err, res) => {
     if (err) {
@@ -38,7 +43,8 @@ const handleGettingUsers = response => {
   });
 };
 
-
+// Takes an array in the form ['name', 'answer1', 'answer2', ... , 'answer7', '']
+// Reduces and filters to give a single house name based on the most relevant answers
 const sortingHat = answers =>
   answers.reduce(
     (a, b, i, arr) =>
@@ -48,6 +54,11 @@ const sortingHat = answers =>
     null
   );
 
+
+// On entering a new user and clicking the form submit button
+// Streams in data and manipulates it when finished into an array for the sorting hat
+// Runs postdata to send relevant name, house_name and points to store in database 
+// Currently does not change page from index but MAY refresh the page. 
 const handleCreateNewUser = (url, request, response) => {
   let data = "";
   request.on("data", chunk => {
@@ -63,15 +74,11 @@ const handleCreateNewUser = (url, request, response) => {
     postData(name, house, points, (err, res) => {
       if (err) {
         response.writeHead(500, "Content-Type: text/html");
-        response.end(
-          "<h1>Sorry, there's been an error at hat HQ, are you a muggle?</h1>"
-        );
+        response.end("<h1>Sorry, there's been an error at hat HQ, are you a muggle?</h1>");
         console.log(err);
       } else {
-        response.writeHead(301, {
-          "Content-type": "text/html",
-          Location: "/"
-        });
+        // DO WE WANT TO REFRESH THE PAGE HERE?
+        response.writeHead(301, {"Content-type": "text/html", Location: "/"});
         const filePath = path.join(__dirname, "..", "public/index.html");
         fs.readFile(filePath, (error, file) => {
           if (error) {
@@ -85,6 +92,7 @@ const handleCreateNewUser = (url, request, response) => {
     });
   });
 };
+
 const handlePublic = (response, endpoint) => {
   const extension = endpoint.split(".")[1];
   const extensionType = {
