@@ -1,5 +1,5 @@
 const {
-  handleGettingUsers,
+  handleGettingData,
   handleCreateNewUser,
   handleHome,
   handle404,
@@ -12,7 +12,7 @@ const router = (request, response) => {
   if (endpoint === "/") {
     handleHome(response);
   } else if (endpoint === "/houses") {
-    handleGettingUsers(response);
+    handleGettingData(response);
   } else if (endpoint === "/create-user") {
     handleCreateNewUser(endpoint, request, response);
   } else if (endpoint.startsWith("/public")) {

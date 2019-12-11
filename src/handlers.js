@@ -3,6 +3,8 @@ const getData = require("./queries/getData.js");
 const queryString = require("querystring");
 const postData = require("./queries/postData.js");
 const path = require("path");
+
+//handle index html
 const handleHome = response => {
   const filepath = path.join(__dirname, "..", "public", "index.html");
   fs.readFile(filepath, (err, file) => {
@@ -11,6 +13,8 @@ const handleHome = response => {
     response.end(file);
   });
 };
+
+//handle our 404 page
 const handle404 = response => {
   let filePath = path.join(__dirname, "../public/not-found.html");
   fs.readFile(filePath, (err, file) => {
@@ -24,22 +28,36 @@ const handle404 = response => {
     }
   });
 };
-const handleGettingUsers = response => {
-  getData((err, res) => {
+
+// request to show user and house tables
+const handleGettingData = response => {
+  getData.getUsers((err, res) => {
     if (err) {
       response.writeHead(500, "Content-Type:text/html");
       response.end("<h1>Sorry, there was a problem getting the users<h1>");
       console.log(err);
     } else {
-      let output = JSON.stringify(res);
-      response.writeHead(200, { "content-type": "application/json" });
-      response.end(output);
+      const usersOutput = JSON.stringify(res);
+      console.log({ usersOutput });
+      getData.getHouses((err, res) => {
+        if (err) {
+          response.writeHead(500, "Content-Type:text/html");
+          response.end("<h1>Sorry, there was a problem getting the users<h1>");
+          console.log(err);
+        } else {
+          const housesOutput = JSON.stringify(res);
+          console.log({ housesOutput });
+          const outputArray = JSON.stringify([usersOutput, housesOutput]);
+          response.writeHead(200, { "content-type": "application/json" });
+          response.end(outputArray);
+        }
+      });
     }
   });
 };
 
-
-const sortingHat = answers =>
+// finding the house based on the answers our new user has given us
+const sortingHat = answers => {
   answers.reduce(
     (a, b, i, arr) =>
       arr.filter(v => v === a).length >= arr.filter(v => v === b).length
@@ -47,13 +65,15 @@ const sortingHat = answers =>
         : b,
     null
   );
+};
+
+// creating new user with our post to database
 const handleCreateNewUser = (url, request, response) => {
   let data = "";
   request.on("data", chunk => {
     data += chunk;
   });
   request.on("end", () => {
-
     const results = queryString.parse(data);
     let answers = Object.values(results);
     let name = answers[0];
@@ -84,6 +104,8 @@ const handleCreateNewUser = (url, request, response) => {
     });
   });
 };
+
+//handle all files
 const handlePublic = (response, endpoint) => {
   const extension = endpoint.split(".")[1];
   const extensionType = {
@@ -118,8 +140,9 @@ const handlePublic = (response, endpoint) => {
     }
   });
 };
+
 module.exports = {
-  handleGettingUsers,
+  handleGettingData,
   handleCreateNewUser,
   handleHome,
   handle404,
