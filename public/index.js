@@ -1,3 +1,5 @@
+// requests a response from backend through handleGetUsers
+// cb calls updateDom with xhr.responseText as the 'data' argument
 const request = (url, cb) => {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
@@ -39,9 +41,13 @@ const updateDom = (err, data) => {
   }
 };
 
+// Call request function with /houses as url (/houses in router runs the getData.js function)
+// updateDom is run as the callback argument, taking the data and appending to page.
+// request is only called on page refresh? could cause issues down the line.
 request("/houses", updateDom);
 
-const button = document.querySelector("submit-button");
-button.addEventListener("click", () => {
-  window.scrollTo(0, document.body.scrollHeight);
-});
+// This should scroll page on clicking html submit button, but currently the page reloads...something to look at?
+// const button = document.querySelector('submit-button');
+// button.addEventListener('click', () => {
+//   window.scrollTo(0,document.body.scrollHeight);
+// })

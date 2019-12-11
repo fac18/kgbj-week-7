@@ -31,6 +31,8 @@ const handle404 = response => {
 
 // request to show user and house tables
 const handleGettingData = response => {
+  // Takes the response from the database and calls getData with a callback that handles err and res
+  // If no error then stringify the database response and send it back to the front end.
   getData.getUsers((err, res) => {
     if (err) {
       response.writeHead(500, "Content-Type:text/html");
@@ -56,7 +58,8 @@ const handleGettingData = response => {
   });
 };
 
-// finding the house based on the answers our new user has given us
+// Takes an array in the form ['name', 'answer1', 'answer2', ... , 'answer7', '']
+// Reduces and filters to give a single house name based on the most relevant answers
 const sortingHat = answers => {
   answers.reduce(
     (a, b, i, arr) =>
@@ -67,7 +70,10 @@ const sortingHat = answers => {
   );
 };
 
-// creating new user with our post to database
+// On entering a new user and clicking the form submit button
+// Streams in data and manipulates it when finished into an array for the sorting hat
+// Runs postdata to send relevant name, house_name and points to store in database
+// Currently does not change page from index but MAY refresh the page.
 const handleCreateNewUser = (url, request, response) => {
   let data = "";
   request.on("data", chunk => {
@@ -87,10 +93,8 @@ const handleCreateNewUser = (url, request, response) => {
         );
         console.log(err);
       } else {
-        response.writeHead(301, {
-          "Content-type": "text/html",
-          Location: "/"
-        });
+        // DO WE WANT TO REFRESH THE PAGE HERE?
+        response.writeHead(301, { "Content-type": "text/html", Location: "/" });
         const filePath = path.join(__dirname, "..", "public/index.html");
         fs.readFile(filePath, (error, file) => {
           if (error) {

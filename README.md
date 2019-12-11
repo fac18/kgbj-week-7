@@ -1,7 +1,14 @@
 
 # DEV setup
 
+*In the root directory, create an .env file with the PostgreSQL URL*
+DATABASE_URL=postgres://url_to_whatever_database_you_have_access
 
+*To build the database*
+npm run db_build init
+
+*In browser*
+open localhost:1234
 
 # Requirements
 
@@ -42,20 +49,47 @@ I can earn points depending on my answers<br>
 
 # Schema
 
-![Schema](./image/schema.png)
+![Schema](./public/image/schema.png)
 
 # Architecture
 
-![Architecture](./image/architecture.png)
+![Architecture](./public/image/architecture.png)
 
-# DATABASE
+# Sorting Hat Function
 
-# getData & PostData
+```
+const sortingHat = answers =>
+  answers.reduce(
+    (a, b, i, arr) =>
+      arr.filter(v => v === a).length >= arr.filter(v => v === b).length
+        ? a
+        : b,
+    null
+  );
+```
+
+In this function we find the highest occurring element in the array.
+In using the reduce() method, i = the current index making it start from the initial value,
+arr = the source array of selected answers.
+The function goes through and compares how many answers match to a, creating a new array of the occurrences. It does the same thing for b, and then compares which of those arrays is longer.
+It repeats the process for every answer until it finds the one that repeats the most and returns the single value.  
 
 # Tests
+
+![Tests](./public/image/tests.png)
+
+# sql
+
+![DB](./public/image/createdb.png)
+![DATABASE](./public/image/terminaldb.png)
 
 # Style
 
 Harry potter theme baby!
 
 # Problems
+
+Merge mares
+Test traumas
+
+Smooth sailing
