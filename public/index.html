@@ -15,9 +15,11 @@
 
     <a href="#quiz-container" ><button>Create avatar</button></a>
     <a href="#log-in" ><button>Login</button></a>
+
   </section>
 
     <section class="log-in">
+        <form class="form" action="/login" method="post">
       <a name="log-in"></a>
       <input
         name="name"
@@ -25,7 +27,7 @@
         id="loginName"
         placeholder="username"
         aria-label="enter your username"
-        required
+        
       />
       <input
       name="password"
@@ -34,9 +36,10 @@
       class="entry"
       placeholder="password"
       aria-label="enter your password"
-      required
+      
     />
     <button id="loginButton">Submit</button>
+    </form>
     <!-- this log in button is going to perform a get request to verify our user and then redirect them to a new page -->
 
     </section>

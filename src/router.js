@@ -4,6 +4,7 @@ const {
   handleHome,
   handle404,
   handlePublic,
+  handleLogin,
   serveTrivia
 } = require("./handlers");
 
@@ -14,7 +15,8 @@ const router = (request, response) => {
 
   if (endpoint === "/") {
     handleHome(response);
-  } else if (endpoint === "/trivia") {
+  } 
+  else if (endpoint === "/trivia") {
     serveTrivia(response);
   } else if (endpoint === "/houses") {
     handleGettingUsers(response);
@@ -22,6 +24,8 @@ const router = (request, response) => {
     handleCreateNewUser(endpoint, request, response);
   } else if (endpoint.startsWith("/public")) {
     handlePublic(response, endpoint);
+  } else if (endpoint.startsWith("/login")){
+    handleLogin(request, response, endpoint)
   } else {
     handle404(response);
   }
