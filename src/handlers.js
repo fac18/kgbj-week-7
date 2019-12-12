@@ -52,7 +52,6 @@ const serveTrivia = response => {
       response.end("A problem has occurred on our end - sorry folks!");
     } else {
       response.writeHead(200, { "content-type": "text/html" });
-      console.log("poo");
       response.end(file);
     }
   });
