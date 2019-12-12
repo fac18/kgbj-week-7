@@ -3,6 +3,7 @@ const getData = require("./queries/getData.js");
 const queryString = require("querystring");
 const postData = require("./queries/postData.js");
 const path = require("path");
+const hash = require("./hash.js");
 
 const handleHome = response => {
   const filepath = path.join(__dirname, "..", "public", "index.html");
@@ -81,8 +82,14 @@ const handleCreateNewUser = (url, request, response) => {
     const results = queryString.parse(data);
     let answers = Object.values(results);
     let name = answers[0];
+    console.log(answers[1][0]);
     let house = sortingHat(answers);
     let points = Math.ceil(Math.random() * 100);
+    hash.hashPassword(answers[1][0], (err, hashPassword) => {
+      if (err) console.log(err);
+      else console.log;
+    });
+    //console.log({password});
     postData(name, house, points, (err, res) => {
       if (err) {
         response.writeHead(500, "Content-Type: text/html");
