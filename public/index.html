@@ -22,20 +22,20 @@
       <input
         name="name"
         class="entry"
+        id="loginName"
         placeholder="username"
         aria-label="enter your username"
         required
       />
       <input
       name="password"
+      id="loginPassword"
       type='password'
       class="entry"
       placeholder="password"
       aria-label="enter your password"
       required
-      pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
     />
-
     <button>Submit</button>
     <!-- this log in button is going to perform a get request to verify our user and then redirect them to a new page -->
 
@@ -50,19 +50,37 @@
       <form class="form" action="/create-user" method="post">
         <input
           name="name"
+          id="createUsername"
           class="entry"
           placeholder="name"
           aria-label="enter a name"
           required
         />
+        <p id="usernameErr" class="error"></p>
         <input
         name="password"
+        id="createPassword"
         type='password'
         class="entry"
         placeholder="password"
         aria-label="enter a password"
         required
+        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
       />
+      <p id="passwordErr" class="error"></p>
+
+      <input
+      name="password"
+      id="confirmPassword"
+      type='password'
+      class="entry"
+      placeholder="password"
+      aria-label="enter a password"
+      required
+      pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+    />
+    <p id="confirmErr" class="error"></p>
+
 
         <p>1. What is your favourite colour?</p>
         <input type="radio" name="q1" value="1" aria-label="dark red" required /> Dark red<br />
@@ -199,5 +217,6 @@
     </section>
 
     <script src="public/index.js"></script>
+    <script src="public/authentication.js"></script>
   </body>
 </html>
