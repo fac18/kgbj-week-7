@@ -3,6 +3,7 @@ const getData = require("./queries/getData.js");
 const queryString = require("querystring");
 const postData = require("./queries/postData.js");
 const path = require("path");
+const hash = require("./hash.js");
 
 const handleHome = response => {
   const filepath = path.join(__dirname, "..", "public", "index.html");
@@ -28,7 +29,7 @@ const handle404 = response => {
 };
 
 // Takes the response from the database and calls getData with a callback that handles err and res
-// If no error then stringify the database response and send it back to the front end. 
+// If no error then stringify the database response and send it back to the front end.
 const handleGettingUsers = response => {
   getData((err, res) => {
     if (err) {
@@ -57,8 +58,8 @@ const sortingHat = answers =>
 
 // On entering a new user and clicking the form submit button
 // Streams in data and manipulates it when finished into an array for the sorting hat
-// Runs postdata to send relevant name, house_name and points to store in database 
-// Currently does not change page from index but MAY refresh the page. 
+// Runs postdata to send relevant name, house_name and points to store in database
+// Currently does not change page from index but MAY refresh the page.
 const handleCreateNewUser = (url, request, response) => {
   let data = "";
   request.on("data", chunk => {
@@ -69,8 +70,12 @@ const handleCreateNewUser = (url, request, response) => {
     const results = queryString.parse(data);
     let answers = Object.values(results);
     let name = answers[0];
+    console.log(answers[1][0]);
     let house = sortingHat(answers);
     let points = Math.ceil(Math.random() * 100);
+    let password = hash.hashPassword(answers[1][0]);
+    setTimeout(console.log({password}), 0);
+    console.log({answers});
     postData(name, house, points, (err, res) => {
       if (err) {
         response.writeHead(500, "Content-Type: text/html");

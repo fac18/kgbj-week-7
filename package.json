@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/fac18/kgbj-week-6#readme",
   "dependencies": {
+    "bcrypt": "^3.0.7",
+    "bcryptjs": "^2.4.3",
     "env2": "^2.2.2",
     "pg": "^7.14.0",
     "start": "^5.1.0",
