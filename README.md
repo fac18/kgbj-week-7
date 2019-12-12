@@ -5,7 +5,7 @@
 DATABASE_URL=postgres://url_to_whatever_database_you_have_access
 
 *To build the database*
-npm run db_build init
+npm run db_init
 
 *In browser*
 open localhost:1234
