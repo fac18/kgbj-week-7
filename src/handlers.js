@@ -85,10 +85,17 @@ const handleCreateNewUser = (url, request, response) => {
     console.log(answers[1][0]);
     let house = sortingHat(answers);
     let points = Math.ceil(Math.random() * 100);
-    hash.hashPassword(answers[1][0], (err, hashPassword) => {
-      if (err) console.log(err);
-      else console.log;
+
+    hash.hashPassword(answers[1][0], (err, output) => {
+      if (err)  
+      {console.log(err);
+      }
+      else {
+        let password = output;
+        console.log("i am the password", password);
+      }
     });
+
     //console.log({password});
     postData(name, house, points, (err, res) => {
       if (err) {

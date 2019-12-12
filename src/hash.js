@@ -2,31 +2,33 @@
 
 const bcrypt = require('bcryptjs');
 
-// const hashPassword = (password, callback) => {
-//   bcrypt.genSalt(12, (err, salt) => {
-//     if (err) {
-//       callback(err);
-//     } else {
-//       bcrypt.hash(password, salt, (err, hash) => {
-//         if (err) {
-//           console.log(err)
-//           return
-//         }
-//         return hash
-//       });
-//     }
-//   });
-// };
-
 const hashPassword = (password, callback) => {
-  bcrypt.genSalt(10, (err, salt) => {
+  bcrypt.genSalt(12, (err, salt) => {
     if (err) {
       callback(err);
     } else {
-      bcrypt.hash(password, salt, callback);
+      callback(null, bcrypt.hash(password, salt, (err, hash) => {
+        if (err) {
+          console.log(err)
+          return
+        }
+        console.log(hash);
+        return hash
+      })
+      );
     }
   });
 };
+
+// const hashPassword = (password, cb) => {
+//   bcrypt.genSalt(10, (err, salt) => {
+//     if (err) {
+//       cb(err);
+//     } else {
+//       cb(null, bcrypt.hash(password, salt, callback));
+//     }
+//   });
+// };
 
 // const hashPassword = (password, cb) => {
 //   if (err){
