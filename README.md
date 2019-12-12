@@ -1,13 +1,13 @@
 
 # DEV setup
 
-*In the root directory, create an .env file with the PostgreSQL URL*
+**In the root directory, create an .env file with the PostgreSQL URL**
 DATABASE_URL=postgres://url_to_whatever_database_you_have_access
 
-*To build the database*
+**To build the database**
 npm run db_init
 
-*In browser*
+**In browser**
 open localhost:1234
 
 # Requirements
@@ -19,7 +19,7 @@ open localhost:1234
 - [ ] There should be protected routes and unprotected routes that depend on the user having a cookie or not (or what level of access they have).
 - [ ] Website content should be stored in a database
 - [ ] Include thorough tests on the back-end, testing pure functions and testing routes using Supertest. If you make external API calls, use Nock to mock the response for your tests.
-- [ ]Test front-end logic, we don't expect tests on the DOM.
+- [ ] Test front-end logic, we don't expect tests on the DOM.
 
 
 # PROCESS
@@ -70,10 +70,9 @@ CHANGES?
 # Tests
 
 
-
 # sql
 
 
 # Problems
 
-xml and promise
+xml and promises
