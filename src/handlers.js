@@ -28,17 +28,29 @@ const handle404 = response => {
 };
 
 // Takes the response from the database and calls getData with a callback that handles err and res
-// If no error then stringify the database response and send it back to the front end. 
-const handleGettingUsers = response => {
-  getData((err, res) => {
+// If no error then stringify the database response and send it back to the front end.
+const handleGettingUsers = (response, (err, data)=> {
+  let filePath = path.join(__dirname, "../public/trivia.html");
+  fs.readFile(filePath, (err, file) => {
     if (err) {
-      response.writeHead(500, "Content-Type:text/html");
-      response.end("<h1>Sorry, there was a problem getting the users<h1>");
       console.log(err);
+      response.writeHead(500, { "content-type": "text/html" });
+      response.end("A problem has occurred on our end - sorry folks!");
     } else {
-      let output = JSON.stringify(res);
-      response.writeHead(200, { "content-type": "application/json" });
-      response.end(output);
+      response.writeHead(200, { "content-type": "text/html" });
+      console.log("poo");
+      // getData((err, res) => {
+      //   if (err) {
+      //     response.writeHead(500, "Content-Type:text/html");
+      //     response.end("<h1>Sorry, there was a problem getting the users<h1>");
+      //     console.log(err);
+      //   } else {
+      //     let output = JSON.stringify(res);
+      //     response.writeHead(200, { "content-type": "application/json" });
+      //     response.end(output);
+      //   }
+      // });
+      response.end(file);
     }
   });
 };
@@ -54,18 +66,16 @@ const sortingHat = answers =>
     null
   );
 
-
 // On entering a new user and clicking the form submit button
 // Streams in data and manipulates it when finished into an array for the sorting hat
-// Runs postdata to send relevant name, house_name and points to store in database 
-// Currently does not change page from index but MAY refresh the page. 
+// Runs postdata to send relevant name, house_name and points to store in database
+// Currently does not change page from index but MAY refresh the page.
 const handleCreateNewUser = (url, request, response) => {
   let data = "";
   request.on("data", chunk => {
     data += chunk;
   });
   request.on("end", () => {
-
     const results = queryString.parse(data);
     let answers = Object.values(results);
     let name = answers[0];
@@ -74,11 +84,13 @@ const handleCreateNewUser = (url, request, response) => {
     postData(name, house, points, (err, res) => {
       if (err) {
         response.writeHead(500, "Content-Type: text/html");
-        response.end("<h1>Sorry, there's been an error at hat HQ, are you a muggle?</h1>");
+        response.end(
+          "<h1>Sorry, there's been an error at hat HQ, are you a muggle?</h1>"
+        );
         console.log(err);
       } else {
         // DO WE WANT TO REFRESH THE PAGE HERE?
-        response.writeHead(301, {"Content-type": "text/html", Location: "/"});
+        response.writeHead(301, { "Content-type": "text/html", Location: "/" });
         const filePath = path.join(__dirname, "..", "public/index.html");
         fs.readFile(filePath, (error, file) => {
           if (error) {

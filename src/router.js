@@ -6,13 +6,15 @@ const {
   handlePublic
 } = require("./handlers");
 
+const getData = require("./queries/getData.js");
+
 const router = (request, response) => {
   const endpoint = request.url;
 
   if (endpoint === "/") {
     handleHome(response);
-  } else if (endpoint === "/houses") {
-    handleGettingUsers(response);
+  } else if (endpoint === "/trivia") {
+    handleGettingUsers(response, (null, data));
   } else if (endpoint === "/create-user") {
     handleCreateNewUser(endpoint, request, response);
   } else if (endpoint.startsWith("/public")) {
