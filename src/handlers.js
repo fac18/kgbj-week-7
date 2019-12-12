@@ -4,6 +4,9 @@ const queryString = require("querystring");
 const postData = require("./queries/postData.js");
 const path = require("path");
 const hash = require("./hash.js");
+let password = "";
+const bcrypt = require('bcryptjs');
+
 
 const handleHome = response => {
   const filepath = path.join(__dirname, "..", "public", "index.html");
@@ -82,44 +85,62 @@ const handleCreateNewUser = (url, request, response) => {
     const results = queryString.parse(data);
     let answers = Object.values(results);
     let name = answers[0];
-    console.log(answers[1][0]);
+    let password = answers[1][0];
+    let finalPassword = "";
     let house = sortingHat(answers);
     let points = Math.ceil(Math.random() * 100);
 
-    hash.hashPassword(answers[1][0], (err, output) => {
-      if (err)  
-      {console.log(err);
-      }
-      else {
-        let password = output;
-        console.log("i am the password", password);
-      }
-    });
-
-    //console.log({password});
-    postData(name, house, points, (err, res) => {
-      if (err) {
-        response.writeHead(500, "Content-Type: text/html");
-        response.end(
-          "<h1>Sorry, there's been an error at hat HQ, are you a muggle?</h1>"
-        );
-        console.log(err);
-      } else {
-        // DO WE WANT TO REFRESH THE PAGE HERE?
-        response.writeHead(301, { "Content-type": "text/html", Location: "/" });
-        const filePath = path.join(__dirname, "..", "public/index.html");
-        fs.readFile(filePath, (error, file) => {
-          if (error) {
-            console.log(error);
-            return;
+  bcrypt.genSalt(12, (err, salt) => {
+    if (err) {
+      console.log(err);
+    } else {
+     bcrypt.hash(password, salt, (err, hash) => {
+        if (err) {
+          console.log(err)
+        }
+        finalPassword = hash;
+        console.log({finalPassword});
+        postData(name, house, points, finalPassword, (err, res) => {
+          if (err) {
+            response.writeHead(500, "Content-Type: text/html");
+            response.end(
+              "<h1>Sorry, there's been an error at hat HQ, are you a muggle?</h1>"
+            );
+            console.log(err);
           } else {
-            response.end(file);
+            // DO WE WANT TO REFRESH THE PAGE HERE?
+            response.writeHead(301, { "Content-type": "text/html", Location: "/" });
+            const filePath = path.join(__dirname, "..", "public/index.html");
+            fs.readFile(filePath, (error, file) => {
+              if (error) {
+                console.log(error);
+                return;
+              } else {
+                response.end(file);
+              }
+            });
           }
         });
-      }
-    });
+      });
+    }
+  });;
+
+    // hash.hashPassword(answers[1][0], (err, output) => {
+    //   if (err)  
+    //   {console.log(err);
+    //   }
+    //   else {
+    //   password = output;
+    //   console.log({password});
+    //   }
+    // });
+    
+
+    //console.log({password});
   });
 };
+
+
 
 const handlePublic = (response, endpoint) => {
   const extension = endpoint.split(".")[1];
