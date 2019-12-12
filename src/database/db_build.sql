@@ -12,7 +12,7 @@ CREATE TABLE house (
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
-  password VARCHAR NOT NULL,
+  password VARCHAR,
   house_id INTEGER,
   FOREIGN KEY (house_id) REFERENCES house(id),
   points INTEGER DEFAULT 0
