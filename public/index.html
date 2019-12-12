@@ -10,18 +10,59 @@
     <link href="https://fonts.googleapis.com/css?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
   </head>
   <body>
+    <section class='splash-page'>
     <h1>which hogwarts house are you in?</h1>
 
+    <a href="#quiz-container" ><button>Create avatar</button></a>
+    <a href="#log-in" ><button>Login</button></a>
+  </section>
+
+    <section class="log-in">
+      <a name="log-in"></a>
+      <input
+        name="name"
+        class="entry"
+        placeholder="username"
+        aria-label="enter your username"
+        required
+      />
+      <input
+      name="password"
+      type='password'
+      class="entry"
+      placeholder="password"
+      aria-label="enter your password"
+      required
+      pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+    />
+
+    <button>Submit</button>
+    <!-- this log in button is going to perform a get request to verify our user and then redirect them to a new page -->
+
+    </section>
+
+
+
+
     <section class="quiz-container">
+      <a name="quiz-container"></a>
       <h2>Answer the sorting hat's questions...</h2>
       <form class="form" action="/create-user" method="post">
         <input
           name="name"
-          class="name-entry"
-          placeholder="tell me your name"
-          aria-label="enter your name"
+          class="entry"
+          placeholder="name"
+          aria-label="enter a name"
           required
         />
+        <input
+        name="password"
+        type='password'
+        class="entry"
+        placeholder="password"
+        aria-label="enter a password"
+        required
+      />
 
         <p>1. What is your favourite colour?</p>
         <input type="radio" name="q1" value="1" aria-label="dark red" required /> Dark red<br />
@@ -133,9 +174,9 @@
         </tr>
         <tr>
           <td colspan="2" id="r-points"></td>
-        
+
         </tr>
-        <tr>   
+        <tr>
           <th>name</th>
           <th>points</th>
         </tr>
