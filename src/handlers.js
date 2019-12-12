@@ -4,6 +4,8 @@ const queryString = require("querystring");
 const postData = require("./queries/postData.js");
 const path = require("path");
 const hash = require("./hash.js");
+const cookie = require('cookie');
+const { sign, verify } = require('jsonwebtoken');
 
 const handleHome = response => {
   const filepath = path.join(__dirname, "..", "public", "index.html");
@@ -118,6 +120,35 @@ const handleCreateNewUser = (url, request, response) => {
   });
 };
 
+
+let SECRET = 'ssssshhhhh';
+
+const handleLogin = (req, res) => {
+  let data2 = "";
+  req.on("data", chunk => {
+    data2 += chunk;
+  });
+  req.on("end", () => {
+    const loginInfo = queryString.parse(data2);
+    console.log({loginInfo});
+    let userDetails = { user: `${loginInfo.name}`, pass: `${loginInfo.password}`};
+    console.log ({userDetails}); 
+    const cookie = sign(userDetails, SECRET);
+    console.log({cookie});
+      res.writeHead(
+        302,
+        {
+          'Location': '/trivia',
+          'Set-Cookie': `jwt=${cookie}; HttpOnly; Max-Age=10`
+        }
+      );
+      return res.end();
+  });
+    
+}
+
+
+
 const handlePublic = (response, endpoint) => {
   const extension = endpoint.split(".")[1];
   const extensionType = {
@@ -158,5 +189,6 @@ module.exports = {
   handleHome,
   handle404,
   handlePublic,
+  handleLogin,
   serveTrivia
 };
