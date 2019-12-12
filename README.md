@@ -10,6 +10,15 @@ npm run db_init
 **In browser**
 open localhost:1234
 
+# Current progress
+
+At this point we dont have authentication working properly...  
+Using the create user quiz and submit (sort) button we can hash and pass a username and password to the database. This would ideally also take you straight to the trivia.html where you can see the database tables represented.  
+
+Currently the 'login' functionality does not search for an authentic user from the database. It is possible to log in with **any** credentials and be passed straight to the trivia.html (or user only) page. This will give you a cookie, which once expired would ideally give a 401 message if attempting to get back to that page without login.
+
+Connecting these two is our main task remaining to create the mvp.
+
 # Requirements
 
 - [ ] Login form with 2 fields - username and password
@@ -27,8 +36,8 @@ open localhost:1234
 - On Wednesday we decided how we wanted the rest of our project to be set up continuing from last week
 - We started on 2 major parts of our project: recreating the xml request and reconfiguring the database
 - We had set aside Thursday to focus on authentication and decided to mob initially that morning
--
--
+- We began by creating client side validation on the submit html form
+- Next we split into pairs to work on the password hashing and cookie/login.
 
 # User Journey
 
@@ -47,11 +56,11 @@ I can earn more house points for my house by answering trivia<br>
 
 # Schema
 
-
+![](./public/image/schema.png)
 
 # Architecture
 
-
+![](./public/image/architecture.png)
 
 # Sorting Hat Function
 
@@ -67,12 +76,16 @@ const sortingHat = answers =>
 ```
 CHANGES?
 
-# Tests
-
-
-# sql
-
-
 # Problems
 
-xml and promises
+we had a massive issue trying to insert the hashed password into the database! eventually we managed to solve it two different ways...
+
+Using promises...
+![](./public/image/method1.png)
+
+Using callbacks
+![](./public/image/method2.png)
+
+...then finally got it working **BUT** having inserted a lot of promises as passwords along the way!
+
+![](./public/image/finally.png)
