@@ -29,7 +29,21 @@ const handle404 = response => {
 
 // Takes the response from the database and calls getData with a callback that handles err and res
 // If no error then stringify the database response and send it back to the front end.
-const handleGettingUsers = (response, (err, data)=> {
+const handleGettingUsers = response => {
+  getData((err, res) => {
+    if (err) {
+      response.writeHead(500, "Content-Type:text/html");
+      response.end("<h1>Sorry, there was a problem getting the users<h1>");
+      console.log(err);
+    } else {
+      let output = JSON.stringify(res);
+      response.writeHead(200, { "content-type": "application/json" });
+      response.end(output);
+    }
+  });
+};
+
+const serveTrivia = response => {
   let filePath = path.join(__dirname, "../public/trivia.html");
   fs.readFile(filePath, (err, file) => {
     if (err) {
@@ -39,17 +53,6 @@ const handleGettingUsers = (response, (err, data)=> {
     } else {
       response.writeHead(200, { "content-type": "text/html" });
       console.log("poo");
-      // getData((err, res) => {
-      //   if (err) {
-      //     response.writeHead(500, "Content-Type:text/html");
-      //     response.end("<h1>Sorry, there was a problem getting the users<h1>");
-      //     console.log(err);
-      //   } else {
-      //     let output = JSON.stringify(res);
-      //     response.writeHead(200, { "content-type": "application/json" });
-      //     response.end(output);
-      //   }
-      // });
       response.end(file);
     }
   });
@@ -144,5 +147,6 @@ module.exports = {
   handleCreateNewUser,
   handleHome,
   handle404,
-  handlePublic
+  handlePublic,
+  serveTrivia
 };

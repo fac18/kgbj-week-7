@@ -24,7 +24,6 @@ let housepoints = {
 // Parses JSON data and appends it to the DOM as table rows and cells
 //in the callback of request, xhr.response (from back end) is passed as 'data' into our DOM function
 const updateDom = (err, data) => {
-  console.log({ data });
   if (err) {
     console.error(err);
   } else {
@@ -87,7 +86,7 @@ const updateDom = (err, data) => {
 // request is only called on page refresh? could cause issues down the line.
 // const loginButton = document.querySelector('#loginButton')
 // loginButton.addEventListener('click',
-request("/trivia", updateDom);
+request("/houses", updateDom);
 
 // This should scroll page on clicking html submit button, but currently the page reloads...something to look at?
 // const button = document.querySelector('submit-button');

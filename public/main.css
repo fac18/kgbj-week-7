@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: 'IM Fell English SC', serif;
+  font-family: "IM Fell English SC", serif;
   scroll-behavior: smooth;
 }
 
@@ -15,37 +15,38 @@ body {
 }
 
 p {
-  color: white; 
+  color: white;
   font-size: 100px;
 }
 
-h1, h2 {
-  font-family: 'IM Fell English SC', serif;
+h1,
+h2 {
+  font-family: "IM Fell English SC", serif;
   margin-left: 5vw;
   margin-right: 5vw;
   text-align: center;
 }
 
-
 h1 {
-  color: #FFD700;
+  color: #ffd700;
 }
 
 p {
   font-size: 1.2rem;
 }
 .splash-page {
-  height:100vh;
+  height: 100vh;
 }
 
 .quiz-container {
   width: 80vw;
-  background-color: rgba(0,0,0,0.9);
+  background-color: rgba(0, 0, 0, 0.9);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 40px;
+  margin-bottom: 40px;
 }
 
 form {
@@ -55,23 +56,23 @@ form {
   margin-top: 40px;
   margin-bottom: 40px;
   width: 80vw;
-  background-color: rgba(0,0,0,0.9);
+  background-color: rgba(0, 0, 0, 0.9);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding:40px;
+  padding: 40px;
 }
 
 .entry {
-  margin-top:20px;
+  margin-top: 20px;
   margin-bottom: 20px;
   height: 2.5rem;
   width: 100%;
   align-self: center;
   font-size: 1.2rem;
   padding: 10px;
-  display:block;
+  display: block;
   margin-left: auto;
   margin-right: auto;
 }
@@ -85,7 +86,7 @@ button {
   align-items: flex-end;
   margin: 3rem;
   border: none;
-  background-color: #FFD700;
+  background-color: #ffd700;
   color: black;
   /* width: 5rem;
   height: 2.5rem; */
@@ -94,7 +95,7 @@ button {
   padding: 1rem;
   cursor: pointer;
   justify-self: center;
-  display:block;
+  display: block;
   margin-left: auto;
   margin-right: auto;
 }
@@ -102,7 +103,7 @@ button {
 .fourohfour-button {
   margin-top: 40px;
   border: none;
-  background-color: #FFD700;
+  background-color: #ffd700;
   color: black;
   width: 30vw;
   height: 2.5rem;
@@ -111,7 +112,9 @@ button {
   cursor: pointer;
 }
 
-table, th, td {
+table,
+th,
+td {
   border-collapse: collapse;
 }
 
@@ -121,18 +124,16 @@ table {
 
 th {
   text-align: center;
-  border: 2px solid #FFD700;
-  color: #FFD700;
+  border: 2px solid #ffd700;
+  color: #ffd700;
   font-size: 1.2rem;
   column-span: 2;
 }
 
-
-
 td {
-  padding:13px;
+  padding: 13px;
   text-align: center;
-  border: 2px solid #FFD700;
+  border: 2px solid #ffd700;
   font-size: 1.2rem;
 }
 
@@ -142,13 +143,12 @@ td {
     font-size: 1.5rem;
   }
   th {
-    padding:20px;
+    padding: 20px;
     width: 15vw;
   }
 
-
   td {
-    padding:20px;
+    padding: 20px;
     width: 15vw;
   }
 }
