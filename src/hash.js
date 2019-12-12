@@ -1,31 +1,50 @@
 "use strict";
 
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 
-const hashPassword = (password, callback) => {
-  bcrypt.genSalt(12, (err, salt) => {
-    if (err) {
-      callback(err);
-    } else {
-      callback(null, bcrypt.hash(password, salt, (err, hash) => {
-        if (err) {
-          console.log(err)
-          return
-        }
-        console.log(hash);
-        return hash
-      })
-      );
-    }
+const generateSalt = password => {
+  return new Promise((resolve, reject) => {
+    bcrypt.genSalt(12, (err, salt) => {
+      if (err) {
+        reject(new Error(err));
+        return;
+      } else {
+        const passSalt = [password, salt];
+        resolve(passSalt);
+      }
+    });
   });
 };
 
-// const hashPassword = (password, cb) => {
-//   bcrypt.genSalt(10, (err, salt) => {
+const hashIt = (password, salt) => {
+  return new Promise((resolve, reject) => {
+    bcrypt.hash(password, salt, (err, hash) => {
+      if (err) {
+        reject(new Error(err));
+        return;
+      } else {
+        console.log({ hash });
+        resolve(hash);
+      }
+    });
+  });
+};
+
+const hashPassword = password => {
+  return new Promise((resolve, reject) => {
+    generateSalt(password)
+      .then(passSalt => hashIt(passSalt[0], passSalt[1]))
+      .then(hashedPassword => resolve(hashedPassword))
+      .catch(console.error);
+  });
+};
+
+// const hashPassword = (password, callback) => {
+//   bcrypt.genSalt(12, (err, salt) => {
 //     if (err) {
-//       cb(err);
+//       callback(err);
 //     } else {
-//       cb(null, bcrypt.hash(password, salt, callback));
+//       bcrypt.hash(password, salt, callback);
 //     }
 //   });
 // };
@@ -42,11 +61,11 @@ const hashPassword = (password, callback) => {
 //   }
 // }
 
-const comparePasswords = (password, hashedPassword, callback) => {
-  bcrypt.compare(password, hashedPassword, callback);
-};
+// const comparePasswords = (password, hashedPassword, callback) => {
+//   bcrypt.compare(password, hashedPassword, callback);
+// };
 
 module.exports = {
-  comparePasswords,
+  // comparePasswords,
   hashPassword
 };

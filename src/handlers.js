@@ -82,41 +82,38 @@ const handleCreateNewUser = (url, request, response) => {
     const results = queryString.parse(data);
     let answers = Object.values(results);
     let name = answers[0];
-    console.log(answers[1][0]);
+    let password = answers[1][0];
     let house = sortingHat(answers);
     let points = Math.ceil(Math.random() * 100);
 
-    hash.hashPassword(answers[1][0], (err, output) => {
-      if (err)  
-      {console.log(err);
-      }
-      else {
-        let password = output;
-        console.log("i am the password", password);
-      }
-    });
-
-    //console.log({password});
-    postData(name, house, points, (err, res) => {
-      if (err) {
-        response.writeHead(500, "Content-Type: text/html");
-        response.end(
-          "<h1>Sorry, there's been an error at hat HQ, are you a muggle?</h1>"
-        );
-        console.log(err);
-      } else {
-        // DO WE WANT TO REFRESH THE PAGE HERE?
-        response.writeHead(301, { "Content-type": "text/html", Location: "/" });
-        const filePath = path.join(__dirname, "..", "public/index.html");
-        fs.readFile(filePath, (error, file) => {
-          if (error) {
-            console.log(error);
-            return;
-          } else {
-            response.end(file);
-          }
-        });
-      }
+    hash.hashPassword(password).then(hashedPassword => {
+      postData(name, house, points, hashedPassword, (err, res) => {
+        console.log("hello I am creating a new user");
+        console.log({ name, house, points, hashedPassword });
+        if (err) {
+          response.writeHead(500, "Content-Type: text/html");
+          response.end(
+            "<h1>Sorry, there's been an error at hat HQ, are you a muggle?</h1>"
+          );
+          console.log(err);
+        } else {
+          // DO WE WANT TO REFRESH THE PAGE HERE?
+          response.writeHead(301, {
+            "Content-type": "text/html",
+            Location: "/"
+          });
+          const filePath = path.join(__dirname, "..", "public/index.html");
+          fs.readFile(filePath, (error, file) => {
+            if (error) {
+              console.log(error);
+              return;
+            } else {
+              response.end(file);
+            }
+          });
+        }
+      });
+      // });
     });
   });
 };
