@@ -73,9 +73,11 @@ const handleCreateNewUser = (url, request, response) => {
     console.log(answers[1][0]);
     let house = sortingHat(answers);
     let points = Math.ceil(Math.random() * 100);
-    let password = hash.hashPassword(answers[1][0]);
-    setTimeout(console.log({password}), 0);
-    console.log({answers});
+    hash.hashPassword(answers[1][0], (err, hashPassword) => {
+      if (err) console.log(err);
+      else console.log;
+    });
+    //console.log({password});
     postData(name, house, points, (err, res) => {
       if (err) {
         response.writeHead(500, "Content-Type: text/html");
