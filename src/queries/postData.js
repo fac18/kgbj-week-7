@@ -4,7 +4,7 @@ const dbConnection = require("../database/db_connection.js");
 // cb is the rest of the err/res handling - statements are in handleCreateNewUser
 const postData = (name, house, points, cb) => {
   dbConnection.query(
-    "INSERT INTO users (name, house_name, points) VALUES ($1, $2, $3)",
+    "INSERT INTO users (name, house_id, points) VALUES ($1, $2, $3)",
     [name, house, points],
     (err, res) => {
       if (err) return cb(err);

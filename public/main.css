@@ -97,6 +97,10 @@ button {
   cursor: pointer;
 }
 
+table, th, td {
+  border-collapse: collapse;
+}
+
 table {
   margin-top: 20px;
 }
@@ -106,7 +110,9 @@ th {
   border: 2px solid #FFD700;
   color: #FFD700;
   font-size: 1.2rem;
+  column-span: 2;
 }
+
 
 
 td {
