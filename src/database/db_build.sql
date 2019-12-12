@@ -12,7 +12,8 @@ CREATE TABLE house (
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
-  house_name VARCHAR,
+  house_id INTEGER,
+  FOREIGN KEY (house_id) REFERENCES house(id),
   points INTEGER DEFAULT 0
 );
 
@@ -22,10 +23,10 @@ INSERT INTO house (house_name, attributes) VALUES
 ('Ravenclaw', 'Honest and practical'),
 ('Slytherin', 'Clever and competitive');
 
-INSERT INTO users (name, house_name, points) VALUES
-('Jamie', 'Slytherin', -10),
-('Alex', 'Hufflepuff', 500),
-('Rosa', 'Hufflepuff', 500),
-('Beth', 'Hufflepuff', 500);
+INSERT INTO users (name, house_id, points) VALUES
+('Jamie', 4, -10),
+('Alex', 2, 500),
+('Rosa', 2, 500),
+('Beth', 2, 500);
 
 COMMIT;
