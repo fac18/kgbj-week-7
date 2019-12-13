@@ -16,6 +16,10 @@ const generateSalt = password => {
   });
 };
 
+const comparePasswords = (password, hashedPassword, callback) => {
+  bcrypt.compare(password, hashedPassword, callback);
+};
+
 const hashIt = (password, salt) => {
   return new Promise((resolve, reject) => {
     bcrypt.hash(password, salt, (err, hash) => {
@@ -67,5 +71,5 @@ const hashPassword = password => {
 
 module.exports = {
   // comparePasswords,
-  hashPassword
+  hashPassword, comparePasswords
 };

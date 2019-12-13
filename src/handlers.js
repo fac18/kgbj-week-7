@@ -1,11 +1,12 @@
 const fs = require("fs");
-const getData = require("./queries/getData.js");
+const getQueries = require("./queries/getData.js");
 const queryString = require("querystring");
 const postData = require("./queries/postData.js");
 const path = require("path");
 const hash = require("./hash.js");
 const cookie = require('cookie');
 const { sign, verify } = require('jsonwebtoken');
+const bcrypt = require("bcryptjs");
 
 const handleHome = response => {
   const filepath = path.join(__dirname, "..", "public", "index.html");
@@ -33,7 +34,7 @@ const handle404 = response => {
 // Takes the response from the database and calls getData with a callback that handles err and res
 // If no error then stringify the database response and send it back to the front end.
 const handleGettingUsers = response => {
-  getData((err, res) => {
+  getQueries.getData((err, res) => {
     if (err) {
       response.writeHead(500, "Content-Type:text/html");
       response.end("<h1>Sorry, there was a problem getting the users<h1>");
@@ -123,30 +124,85 @@ const handleCreateNewUser = (url, request, response) => {
 
 let SECRET = 'ssssshhhhh';
 
-const handleLogin = (req, res) => {
-  let data2 = "";
-  req.on("data", chunk => {
-    data2 += chunk;
+const handleLogin = (request, response) => {
+  let allData = "";
+  request.on("data", chunk => {
+    allData += chunk;
   });
-  req.on("end", () => {
-    const loginInfo = queryString.parse(data2);
-    console.log({loginInfo});
+  request.on("end", () => {
+    // const { username, password } = qs.parse(allData);
+    const loginInfo = queryString.parse(allData);
     let userDetails = { user: `${loginInfo.name}`, pass: `${loginInfo.password}`};
-    console.log ({userDetails}); 
-    const cookie = sign(userDetails, SECRET);
-    console.log({cookie});
-      res.writeHead(
-        302,
-        {
-          'Location': '/trivia',
-          'Set-Cookie': `jwt=${cookie}; HttpOnly; Max-Age=10`
-        }
-      );
-      return res.end();
-  });
-    
+    console.log({userDetails});
+    let password = userDetails.pass;
+    getQueries.getStoredPassword(userDetails.user, (err, res) => {
+      if (err) {console.log("wrong password has been inputted");}
+      else {
+        let storedPassword = res[0].password;
+        console.log({storedPassword})
+        console.log({password})
+        bcrypt.compare(password, storedPassword, (err, res) => {
+          if (err) console.log(err);
+          else if (res) {
+            
+            const cookie = sign(userDetails, SECRET);
+            console.log({cookie});
+              response.writeHead(
+                302,
+                {
+                  'Location': '/trivia',
+                  'Set-Cookie': `jwt=${cookie}; HttpOnly; Max-Age=10`
+                }
+              );
+              return response.end();
+              } else {
+              console.log("your password is wrong")
+            }
+           
+        });
+      }
+    })
+  })
 }
 
+// const handleLogin = (req, response) => {
+//   let data2 = "";
+//   req.on("data", chunk => {
+//     data2 += chunk;
+//   });
+//   req.on("end", () => {
+//     const loginInfo = queryString.parse(data2);
+
+//     console.log({loginInfo});
+
+  //   hash.hashPassword(loginInfo.password).then(hashedPassword => {
+  //   let userDetails = { user: `${loginInfo.name}`, pass: `${hashedPassword}`};
+  //   console.log ({userDetails});
+  //   console.log ({hashedPassword}); 
+  //   getQueries.loginQuery(userDetails.user, userDetails.pass, (err, res) => {
+  //     if (err) {
+  //       response.writeHead(500, "Content-Type: text/html");
+  //       response.end(
+  //         "<h1>Username not found: please</h1>"
+  //       );
+  //       console.log(err);
+  //     } else {
+  //       const cookie = sign(userDetails, SECRET);
+  //       console.log({cookie});
+  //         response.writeHead(
+  //           302,
+  //           {
+  //             'Location': '/trivia',
+  //             'Set-Cookie': `jwt=${cookie}; HttpOnly; Max-Age=10`
+  //           }
+  //         );
+  //         return response.end();
+  //         }
+  //       });
+  //     })
+  //   })
+  // }
+    
 
 
 const handlePublic = (response, endpoint) => {
