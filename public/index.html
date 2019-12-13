@@ -5,47 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Sorting Hat</title>
-    <link rel="shortcut icon" type="image/png" href="public/image/favicon.png" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="public/image/favicon.png"
+    />
     <link rel="stylesheet" type="text/css" href="public/main.css" />
-    <link href="https://fonts.googleapis.com/css?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=IM+Fell+English+SC&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <section class='splash-page'>
-    <h1>which hogwarts house are you in?</h1>
+    <section class="splash-page">
+      <h1>which hogwarts house are you in?</h1>
 
-    <a href="#quiz-container" ><button>Create avatar</button></a>
-    <a href="#log-in" ><button>Login</button></a>
-
-  </section>
-
-    <section class="log-in">
-        <form class="form" action="/login" method="post">
-      <a name="log-in"></a>
-      <input
-        name="name"
-        class="entry"
-        id="loginName"
-        placeholder="username"
-        aria-label="enter your username"
-        
-      />
-      <input
-      name="password"
-      id="loginPassword"
-      type='password'
-      class="entry"
-      placeholder="password"
-      aria-label="enter your password"
-      
-    />
-    <button id="loginButton">Submit</button>
-    </form>
-    <!-- this log in button is going to perform a get request to verify our user and then redirect them to a new page -->
-
+      <a href="#quiz-container"><button>Create avatar</button></a>
+      <a href="#log-in"><button>Login</button></a>
     </section>
 
-
-
+    <section class="log-in">
+      <form class="form" action="/login" method="post">
+        <a name="log-in"></a>
+        <input
+          name="name"
+          class="entry"
+          id="loginName"
+          placeholder="username"
+          aria-label="enter your username"
+        />
+        <input
+          name="password"
+          id="loginPassword"
+          type="password"
+          class="entry"
+          placeholder="password"
+          aria-label="enter your password"
+        />
+        <button id="loginButton">Submit</button>
+      </form>
+      <!-- this log in button is going to perform a get request to verify our user and then redirect them to a new page -->
+    </section>
 
     <section class="quiz-container">
       <a name="quiz-container"></a>
@@ -61,86 +61,180 @@
         />
         <p id="usernameErr" class="error"></p>
         <input
-        name="password"
-        id="createPassword"
-        type='password'
-        class="entry"
-        placeholder="password"
-        aria-label="enter a password"
-        required
-        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-      />
-      <p id="passwordErr" class="error"></p>
+          name="password"
+          id="createPassword"
+          type="password"
+          class="entry"
+          placeholder="password"
+          aria-label="enter a password"
+          required
+          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+        />
+        <p id="passwordErr" class="error"></p>
 
-      <input
-      name="password"
-      id="confirmPassword"
-      type='password'
-      class="entry"
-      placeholder="password"
-      aria-label="enter a password"
-      required
-      pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-    />
-    <p id="confirmErr" class="error"></p>
-
+        <input
+          name="password"
+          id="confirmPassword"
+          type="password"
+          class="entry"
+          placeholder="password"
+          aria-label="enter a password"
+          required
+          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+        />
+        <p id="confirmErr" class="error"></p>
 
         <p>1. What is your favourite colour?</p>
-        <input type="radio" name="q1" value="1" aria-label="dark red" required /> Dark red<br />
-        <input type="radio" name="q1" value="2" aria-label="Light orange" /> Light orange<br />
-        <input type="radio" name="q1" value="3" aria-label="Dark blue" /> Dark blue<br />
-        <input type="radio" name="q1" value="4" aria-label="Bright green" /> Bright green<br />
+        <input
+          type="radio"
+          name="q1"
+          value="1"
+          aria-label="dark red"
+          required
+        />
+        Dark red<br />
+        <input type="radio" name="q1" value="2" aria-label="Light orange" />
+        Light orange<br />
+        <input type="radio" name="q1" value="3" aria-label="Dark blue" /> Dark
+        blue<br />
+        <input type="radio" name="q1" value="4" aria-label="Bright green" />
+        Bright green<br />
 
         <p>2. Which film do you want to see?</p>
-        <input type="radio" name="q2" value="1" aria-label="An exciting action
-        movie" required /> An exciting action
-        movie<br />
-        <input type="radio" name="q2" value="2" aria-label="A cute animation" /> A cute animation<br />
-        <input type="radio" name="q2" value="3" aria-label="A serious
-        documentary" /> A serious
-        documentary<br />
-        <input type="radio" name="q2" value="4" aria-label="A scary horror
-        film<" /> A scary horror
-        film<br />
+        <input
+          type="radio"
+          name="q2"
+          value="1"
+          aria-label="An exciting action
+        movie"
+          required
+        />
+        An exciting action movie<br />
+        <input type="radio" name="q2" value="2" aria-label="A cute animation" />
+        A cute animation<br />
+        <input
+          type="radio"
+          name="q2"
+          value="3"
+          aria-label="A serious
+        documentary"
+        />
+        A serious documentary<br />
+        <input
+          type="radio"
+          name="q2"
+          value="4"
+          aria-label="A scary horror
+        film<"
+        />
+        A scary horror film<br />
 
         <p>3. Which is most important to you?</p>
-        <input type="radio" name="q3" value="1" aria-label="Being brave" required /> Being brave<br />
-        <input type="radio" name="q3" value="2" aria-label="Being friendly" /> Being friendly<br />
-        <input type="radio" name="q3" value="3" aria-label="Being intelligent" /> Being intelligent<br />
-        <input type="radio" name="q3" value="4" aria-label="Being successful" /> Being successful<br />
+        <input
+          type="radio"
+          name="q3"
+          value="1"
+          aria-label="Being brave"
+          required
+        />
+        Being brave<br />
+        <input type="radio" name="q3" value="2" aria-label="Being friendly" />
+        Being friendly<br />
+        <input
+          type="radio"
+          name="q3"
+          value="3"
+          aria-label="Being intelligent"
+        />
+        Being intelligent<br />
+        <input type="radio" name="q3" value="4" aria-label="Being successful" />
+        Being successful<br />
 
         <p>4. Which subject do you like most?</p>
-        <input type="radio" name="q4" value="1" aria-label="Maths" required /> Maths<br />
-        <input type="radio" name="q4" value="2" aria-label="Science" /> Science<br />
-        <input type="radio" name="q4" value="3" aria-label="History" /> History<br />
+        <input type="radio" name="q4" value="1" aria-label="Maths" required />
+        Maths<br />
+        <input type="radio" name="q4" value="2" aria-label="Science" />
+        Science<br />
+        <input type="radio" name="q4" value="3" aria-label="History" />
+        History<br />
         <input type="radio" name="q4" value="4" aria-label="PE" /> PE<br />
 
         <p>5. Which best describes you?</p>
-        <input type="radio" name="q5" value="1" aria-label="Brave and bold" required /> Brave and bold<br />
-        <input type="radio" name="q5" value="2" aria-label="Shy and gentle" /> Shy and gentle<br />
-        <input type="radio" name="q5" value="3" aria-label="Honest and
-        practical" /> Honest and
-        practical<br />
-        <input type="radio" name="q5" value="4" aria-label="Clever and competitive" /> Clever and
-        competitive<br />
+        <input
+          type="radio"
+          name="q5"
+          value="1"
+          aria-label="Brave and bold"
+          required
+        />
+        Brave and bold<br />
+        <input type="radio" name="q5" value="2" aria-label="Shy and gentle" />
+        Shy and gentle<br />
+        <input
+          type="radio"
+          name="q5"
+          value="3"
+          aria-label="Honest and
+        practical"
+        />
+        Honest and practical<br />
+        <input
+          type="radio"
+          name="q5"
+          value="4"
+          aria-label="Clever and competitive"
+        />
+        Clever and competitive<br />
 
         <p>6. What would you do if you found money on the ground?</p>
-        <input type="radio" name="q6" value="1" aria-label="Put it in the
-        bank" required /> Put it in the
-        bank<br />
-        <input type="radio" name="q6" value="2" aria-label="Use it to help the
-        poor" /> Use it to help the
-        poor<br />
-        <input type="radio" name="q6" value="3" aria-label="Give it to the
-        police" /> Give it to the
-        police<br />
-        <input type="radio" name="q6" value="4" aria-label="Buy what you want" /> Buy what you want<br />
+        <input
+          type="radio"
+          name="q6"
+          value="1"
+          aria-label="Put it in the
+        bank"
+          required
+        />
+        Put it in the bank<br />
+        <input
+          type="radio"
+          name="q6"
+          value="2"
+          aria-label="Use it to help the
+        poor"
+        />
+        Use it to help the poor<br />
+        <input
+          type="radio"
+          name="q6"
+          value="3"
+          aria-label="Give it to the
+        police"
+        />
+        Give it to the police<br />
+        <input
+          type="radio"
+          name="q6"
+          value="4"
+          aria-label="Buy what you want"
+        />
+        Buy what you want<br />
 
         <p>7. What is your favourite weather?</p>
-        <input type="radio" name="q7" value="1" aria-label="Warm and dry" required /> Warm and dry<br />
-        <input type="radio" name="q7" value="2" aria-label="Bright and sunny" /> Bright and sunny<br />
-        <input type="radio" name="q7" value="3" aria-label="Cool and windy" /> Cool and windy<br />
-        <input type="radio" name="q7" value="4" aria-label="Dark and rainy" /> Dark and rainy<br />
+        <input
+          type="radio"
+          name="q7"
+          value="1"
+          aria-label="Warm and dry"
+          required
+        />
+        Warm and dry<br />
+        <input type="radio" name="q7" value="2" aria-label="Bright and sunny" />
+        Bright and sunny<br />
+        <input type="radio" name="q7" value="3" aria-label="Cool and windy" />
+        Cool and windy<br />
+        <input type="radio" name="q7" value="4" aria-label="Dark and rainy" />
+        Dark and rainy<br />
 
         <button
           type="submit"
@@ -153,7 +247,7 @@
       </form>
     </section>
 
-    <script src="public/index.js"></script>
-    <script src="public/authentication.js"></script>
+    <script src="public/js/index.js"></script>
+    <script src="public/js/authentication.js"></script>
   </body>
 </html>

@@ -4,8 +4,8 @@ const queryString = require("querystring");
 const postData = require("./queries/postData.js");
 const path = require("path");
 const hash = require("./hash.js");
-const cookie = require('cookie');
-const { sign, verify } = require('jsonwebtoken');
+const cookie = require("cookie");
+const { sign, verify } = require("jsonwebtoken");
 
 const handleHome = response => {
   const filepath = path.join(__dirname, "..", "public", "index.html");
@@ -17,7 +17,7 @@ const handleHome = response => {
 };
 
 const handle404 = response => {
-  let filePath = path.join(__dirname, "../public/not-found.html");
+  let filePath = path.join(__dirname, "../public/html/not-found.html");
   fs.readFile(filePath, (err, file) => {
     if (err) {
       console.log(err);
@@ -47,7 +47,7 @@ const handleGettingUsers = response => {
 };
 
 const serveTrivia = response => {
-  let filePath = path.join(__dirname, "../public/trivia.html");
+  let filePath = path.join(__dirname, "../public/html/trivia.html");
   fs.readFile(filePath, (err, file) => {
     if (err) {
       console.log(err);
@@ -120,8 +120,7 @@ const handleCreateNewUser = (url, request, response) => {
   });
 };
 
-
-let SECRET = 'ssssshhhhh';
+let SECRET = "ssssshhhhh";
 
 const handleLogin = (req, res) => {
   let data2 = "";
@@ -130,24 +129,21 @@ const handleLogin = (req, res) => {
   });
   req.on("end", () => {
     const loginInfo = queryString.parse(data2);
-    console.log({loginInfo});
-    let userDetails = { user: `${loginInfo.name}`, pass: `${loginInfo.password}`};
-    console.log ({userDetails}); 
+    console.log({ loginInfo });
+    let userDetails = {
+      user: `${loginInfo.name}`,
+      pass: `${loginInfo.password}`
+    };
+    console.log({ userDetails });
     const cookie = sign(userDetails, SECRET);
-    console.log({cookie});
-      res.writeHead(
-        302,
-        {
-          'Location': '/trivia',
-          'Set-Cookie': `jwt=${cookie}; HttpOnly; Max-Age=10`
-        }
-      );
-      return res.end();
+    console.log({ cookie });
+    res.writeHead(302, {
+      Location: "/trivia",
+      "Set-Cookie": `jwt=${cookie}; HttpOnly; Max-Age=10`
+    });
+    return res.end();
   });
-    
-}
-
-
+};
 
 const handlePublic = (response, endpoint) => {
   const extension = endpoint.split(".")[1];
@@ -167,7 +163,7 @@ const handlePublic = (response, endpoint) => {
     if (error) {
       console.log(error);
       fs.readFile(
-        path.join(__dirname, "..", "/public/not-found.html"),
+        path.join(__dirname, "..", "/public/html/not-found.html"),
         (err2, file2) => {
           if (err2) {
             console.log(err2);
