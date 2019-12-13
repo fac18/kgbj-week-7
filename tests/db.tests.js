@@ -9,14 +9,14 @@ test("tape is working", t => {
   t.end();
 });
 
-test("select all data from users table", t => {
+test("select all data from users table ORDER BY house_id", t => {
   runDbBuild((err, res) => {
     t.error(err, "No error");
     const expected = [
-      { id: 1, name: 'Jamie', house_name: 'Slytherin', points: 0 },
-      { id: 2, name: 'Alex', house_name: 'Hufflepuff', points: 0 },
-      { id: 3, name: 'Rosa', house_name: 'Hufflepuff', points: 0 },
-      { id: 4, name: 'Beth', house_name: 'Hufflepuff', points: 0 }
+      { id: 2, name: 'Alex', password: 'alexandra123', house_id: 2,  points: 500},
+      { id: 3, name: 'Rosa', password: 'rosalie123', house_id: 2,  points: 500},
+      { id: 4, name: 'Beth', password: 'bethany123', house_id: 2,  points: 500},
+      { id: 1, name: 'Jamie', password: 'jamie123', house_id: 4,  points: -10}
     ];
     getData((err, result) => {
       if (err) console.log(err);
@@ -26,6 +26,7 @@ test("select all data from users table", t => {
   });
 });
 
+
 test("insert user into the database", t => {
   runDbBuild((err, res) => {
     t.error(err, "No error");
@@ -33,18 +34,14 @@ test("insert user into the database", t => {
       if (err) console.log(err);
       t.deepEqual(result.length, 4, "length of result is 4");
     });
-
-    postData("Test", "Ravenclaw", 28, (err, res) => {
+    postData("Test", 3, 28, "password", (err, res) => {
       if (err) console.log(err);
-
       getData((err, result) => {
         if (err) console.log(err);
         t.deepEqual(result.length, 5, "new length is 5");
         t.end();
       });
     });
-
-
 
   });
 });
