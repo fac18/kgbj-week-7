@@ -7,6 +7,8 @@ const hash = require("./hash.js");
 const cookie = require("cookie");
 const { sign, verify } = require("jsonwebtoken");
 
+let SECRET = "ssssshhhhh";
+
 const handleHome = response => {
   const filepath = path.join(__dirname, "..", "public", "index.html");
   fs.readFile(filepath, (err, file) => {
@@ -93,26 +95,37 @@ const handleCreateNewUser = (url, request, response) => {
             "<h1>Sorry, there's been an error at hat HQ, are you a muggle?</h1>"
           );
         } else {
-          response.writeHead(301, {
-            "Content-type": "text/html",
-            Location: "/"
-          });
-          const filePath = path.join(__dirname, "..", "public/index.html");
-          fs.readFile(filePath, (error, file) => {
-            if (error) {
-              return;
-            } else {
-              response.end(file);
-            }
-          });
+          // response.writeHead(301, {
+          //   "Content-type": "text/html",
+          //   Location: "/"
+          // });
+          // const filePath = path.join(__dirname, "..", "public/index.html");
+          // fs.readFile(filePath, (error, file) => {
+          //   if (error) {
+          //     return;
+          //   } else {
+          //     response.end(file);
+          //   }
+
+            let userDetails = {
+              user: name,
+              pass: hashedPassword
+            };
+            const cookie = sign(userDetails, SECRET);
+            response.writeHead(302, {
+              Location: "/trivia",
+              "Set-Cookie": `Login=${cookie}; HttpOnly; Max-Age=9000`
+            });
+            return response.end();
         }
       });
-      // });
+        
     });
-  });
-};
+  })
+}
+      
 
-let SECRET = "ssssshhhhh";
+
 
 const handleLogin = (req, res) => {
   let data2 = "";
@@ -128,7 +141,7 @@ const handleLogin = (req, res) => {
     const cookie = sign(userDetails, SECRET);
     res.writeHead(302, {
       Location: "/trivia",
-      "Set-Cookie": `jwt=${cookie}; HttpOnly; Max-Age=10`
+      "Set-Cookie": `jwt=${cookie}; HttpOnly; Max-Age=9000`
     });
     return res.end();
   });
