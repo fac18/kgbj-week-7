@@ -80,15 +80,3 @@ const updateDom = (err, data) => {
     });
   }
 };
-
-// Call request function with /houses as url (/houses in router runs the getData.js function)
-// updateDom is run as the callback argument, taking the data and appending to page.
-// request is only called on page refresh? could cause issues down the line.
-// const loginButton = document.querySelector('#loginButton')
-// loginButton.addEventListener('click',
-
-// This should scroll page on clicking html submit button, but currently the page reloads...something to look at?
-// const button = document.querySelector('submit-button');
-// button.addEventListener('click', () => {
-//   window.scrollTo(0,document.body.scrollHeight);
-// })

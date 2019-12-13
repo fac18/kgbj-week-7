@@ -20,7 +20,6 @@ const handle404 = response => {
   let filePath = path.join(__dirname, "../public/html/not-found.html");
   fs.readFile(filePath, (err, file) => {
     if (err) {
-      console.log(err);
       response.writeHead(500, { "content-type": "text/html" });
       response.end("A problem has occurred on our end - sorry folks!");
     } else {
@@ -37,7 +36,6 @@ const handleGettingUsers = response => {
     if (err) {
       response.writeHead(500, "Content-Type:text/html");
       response.end("<h1>Sorry, there was a problem getting the users<h1>");
-      console.log(err);
     } else {
       let output = JSON.stringify(res);
       response.writeHead(200, { "content-type": "application/json" });
@@ -50,7 +48,6 @@ const serveTrivia = response => {
   let filePath = path.join(__dirname, "../public/html/trivia.html");
   fs.readFile(filePath, (err, file) => {
     if (err) {
-      console.log(err);
       response.writeHead(500, { "content-type": "text/html" });
       response.end("A problem has occurred on our end - sorry folks!");
     } else {
@@ -90,16 +87,12 @@ const handleCreateNewUser = (url, request, response) => {
 
     hash.hashPassword(password).then(hashedPassword => {
       postData(name, house, points, hashedPassword, (err, res) => {
-        console.log("hello I am creating a new user");
-        console.log({ name, house, points, hashedPassword });
         if (err) {
           response.writeHead(500, "Content-Type: text/html");
           response.end(
             "<h1>Sorry, there's been an error at hat HQ, are you a muggle?</h1>"
           );
-          console.log(err);
         } else {
-          // DO WE WANT TO REFRESH THE PAGE HERE?
           response.writeHead(301, {
             "Content-type": "text/html",
             Location: "/"
@@ -107,7 +100,6 @@ const handleCreateNewUser = (url, request, response) => {
           const filePath = path.join(__dirname, "..", "public/index.html");
           fs.readFile(filePath, (error, file) => {
             if (error) {
-              console.log(error);
               return;
             } else {
               response.end(file);
@@ -129,14 +121,11 @@ const handleLogin = (req, res) => {
   });
   req.on("end", () => {
     const loginInfo = queryString.parse(data2);
-    console.log({ loginInfo });
     let userDetails = {
       user: `${loginInfo.name}`,
       pass: `${loginInfo.password}`
     };
-    console.log({ userDetails });
     const cookie = sign(userDetails, SECRET);
-    console.log({ cookie });
     res.writeHead(302, {
       Location: "/trivia",
       "Set-Cookie": `jwt=${cookie}; HttpOnly; Max-Age=10`
@@ -161,7 +150,6 @@ const handlePublic = (response, endpoint) => {
   const filePath = path.join(__dirname, "..", endpoint);
   fs.readFile(filePath, (error, file) => {
     if (error) {
-      console.log(error);
       fs.readFile(
         path.join(__dirname, "..", "/public/html/not-found.html"),
         (err2, file2) => {
