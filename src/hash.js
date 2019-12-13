@@ -23,7 +23,6 @@ const hashIt = (password, salt) => {
         reject(new Error(err));
         return;
       } else {
-        console.log({ hash });
         resolve(hash);
       }
     });
@@ -39,33 +38,7 @@ const hashPassword = password => {
   });
 };
 
-// const hashPassword = (password, callback) => {
-//   bcrypt.genSalt(12, (err, salt) => {
-//     if (err) {
-//       callback(err);
-//     } else {
-//       bcrypt.hash(password, salt, callback);
-//     }
-//   });
-// };
-
-// const hashPassword = (password, cb) => {
-//   if (err){
-//     cb(err)
-//   } else {
-//     cb(null, password => {
-//       bcrypt.hash(password, 12).then(function(hash) {
-//         console.log(hash);
-//       });
-//     })
-//   }
-// }
-
-// const comparePasswords = (password, hashedPassword, callback) => {
-//   bcrypt.compare(password, hashedPassword, callback);
-// };
 
 module.exports = {
-  // comparePasswords,
   hashPassword
 };
