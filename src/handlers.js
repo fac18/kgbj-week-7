@@ -7,7 +7,7 @@ const hash = require("./hash.js");
 const cookie = require('cookie');
 const { sign, verify } = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
-
+let SECRET = "ssssshhhhh";
 const handleHome = response => {
   const filepath = path.join(__dirname, "..", "public", "index.html");
   fs.readFile(filepath, (err, file) => {
@@ -18,10 +18,9 @@ const handleHome = response => {
 };
 
 const handle404 = response => {
-  let filePath = path.join(__dirname, "../public/not-found.html");
+  let filePath = path.join(__dirname, "../public/html/not-found.html");
   fs.readFile(filePath, (err, file) => {
     if (err) {
-      console.log(err);
       response.writeHead(500, { "content-type": "text/html" });
       response.end("A problem has occurred on our end - sorry folks!");
     } else {
@@ -38,7 +37,6 @@ const handleGettingUsers = response => {
     if (err) {
       response.writeHead(500, "Content-Type:text/html");
       response.end("<h1>Sorry, there was a problem getting the users<h1>");
-      console.log(err);
     } else {
       let output = JSON.stringify(res);
       response.writeHead(200, { "content-type": "application/json" });
@@ -48,10 +46,9 @@ const handleGettingUsers = response => {
 };
 
 const serveTrivia = response => {
-  let filePath = path.join(__dirname, "../public/trivia.html");
+  let filePath = path.join(__dirname, "../public/html/trivia.html");
   fs.readFile(filePath, (err, file) => {
     if (err) {
-      console.log(err);
       response.writeHead(500, { "content-type": "text/html" });
       response.end("A problem has occurred on our end - sorry folks!");
     } else {
@@ -91,14 +88,11 @@ const handleCreateNewUser = (url, request, response) => {
 
     hash.hashPassword(password).then(hashedPassword => {
       postData(name, house, points, hashedPassword, (err, res) => {
-        console.log("hello I am creating a new user");
-        console.log({ name, house, points, hashedPassword });
         if (err) {
           response.writeHead(500, "Content-Type: text/html");
           response.end(
             "<h1>Sorry, there's been an error at hat HQ, are you a muggle?</h1>"
           );
-          console.log(err);
         } else {
           response.writeHead(301, {
             "Content-type": "text/html",
@@ -113,15 +107,40 @@ const handleCreateNewUser = (url, request, response) => {
               response.end(file);
             }
           });
+          // DO WE WANT TO REFRESH THE PAGE HERE?
+          response.writeHead(301, {
+            "Content-type": "text/html",
+            Location: "/"
+          });
+          const filePath = path.join(__dirname, "..", "public/index.html");
+          fs.readFile(filePath, (error, file) => {
+            if (error) {
+              console.log(error);
+              return;
+            } else {
+              response.end(file);
+            }
+          });
+
+            let userDetails = {
+              user: name,
+              pass: hashedPassword
+            };
+            const cookie = sign(userDetails, SECRET);
+            response.writeHead(302, {
+              Location: "/trivia",
+              "Set-Cookie": `Login=${cookie}; HttpOnly; Max-Age=9000`
+            });
+            return response.end();
         }
       });
-      // });
+        
     });
-  });
-};
+  })
+}
+      
 
 
-let SECRET = 'ssssshhhhh';
 
 const handleLogin = (request, response) => {
   let allData = "";
@@ -167,85 +186,6 @@ const handleLogin = (request, response) => {
   })
 }
 
-// const handleLogin = (request, response) => {
-//   let allData = "";
-//   request.on("data", chunk => {
-//     allData += chunk;
-//   });
-//   request.on("end", () => {
-//     // const { username, password } = qs.parse(allData);
-//     const loginInfo = queryString.parse(allData);
-//     let userDetails = { user: `${loginInfo.name}`, pass: `${loginInfo.password}`};
-//     console.log({userDetails});
-//     let password = userDetails.pass;
-//     getQueries.getStoredPassword(userDetails.user, (err, res) => {
-//       if (err) {console.log("wrong password has been inputted");}
-//       else {
-//         let storedPassword = res[0].password;
-//         console.log({storedPassword})
-//         console.log({password})
-//         bcrypt.compare(password, storedPassword, (err, res) => {
-//           if (err) console.log(err);
-//           else if (res) { 
-//             const cookie = sign(userDetails, SECRET);
-//             console.log({cookie});
-//               response.writeHead(
-//                 302,
-//                 {
-//                   'Location': '/trivia',
-//                   'Set-Cookie': `jwt=${cookie}; HttpOnly; Max-Age=10`
-//                 }
-//               );
-//               return response.end();
-//               } else {
-//               console.log("your password is wrong")
-//             }
-           
-//         });
-//       }
-//     })
-//   })
-// }
-
-// const handleLogin = (req, response) => {
-//   let data2 = "";
-//   req.on("data", chunk => {
-//     data2 += chunk;
-//   });
-//   req.on("end", () => {
-//     const loginInfo = queryString.parse(data2);
-
-//     console.log({loginInfo});
-
-  //   hash.hashPassword(loginInfo.password).then(hashedPassword => {
-  //   let userDetails = { user: `${loginInfo.name}`, pass: `${hashedPassword}`};
-  //   console.log ({userDetails});
-  //   console.log ({hashedPassword}); 
-  //   getQueries.loginQuery(userDetails.user, userDetails.pass, (err, res) => {
-  //     if (err) {
-  //       response.writeHead(500, "Content-Type: text/html");
-  //       response.end(
-  //         "<h1>Username not found: please</h1>"
-  //       );
-  //       console.log(err);
-  //     } else {
-  //       const cookie = sign(userDetails, SECRET);
-  //       console.log({cookie});
-  //         response.writeHead(
-  //           302,
-  //           {
-  //             'Location': '/trivia',
-  //             'Set-Cookie': `jwt=${cookie}; HttpOnly; Max-Age=10`
-  //           }
-  //         );
-  //         return response.end();
-  //         }
-  //       });
-  //     })
-  //   })
-  // }
-    
-
 
 const handlePublic = (response, endpoint) => {
   const extension = endpoint.split(".")[1];
@@ -263,9 +203,8 @@ const handlePublic = (response, endpoint) => {
   const filePath = path.join(__dirname, "..", endpoint);
   fs.readFile(filePath, (error, file) => {
     if (error) {
-      console.log(error);
       fs.readFile(
-        path.join(__dirname, "..", "/public/not-found.html"),
+        path.join(__dirname, "..", "/public/html/not-found.html"),
         (err2, file2) => {
           if (err2) {
             console.log(err2);
