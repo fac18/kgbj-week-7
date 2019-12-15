@@ -8,6 +8,7 @@ const cookie = require('cookie');
 const { sign, verify } = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
 let SECRET = "ssssshhhhh";
+
 const handleHome = response => {
   const filepath = path.join(__dirname, "..", "public", "index.html");
   fs.readFile(filepath, (err, file) => {
@@ -45,18 +46,18 @@ const handleGettingUsers = response => {
   });
 };
 
-const serveTrivia = response => {
-  let filePath = path.join(__dirname, "../public/html/trivia.html");
-  fs.readFile(filePath, (err, file) => {
-    if (err) {
-      response.writeHead(500, { "content-type": "text/html" });
-      response.end("A problem has occurred on our end - sorry folks!");
-    } else {
-      response.writeHead(200, { "content-type": "text/html" });
-      response.end(file);
-    }
-  });
-};
+// const serveTrivia = response => {
+//   let filePath = path.join(__dirname, "../public/html/trivia.html");
+//   fs.readFile(filePath, (err, file) => {
+//     if (err) {
+//       response.writeHead(500, { "content-type": "text/html" });
+//       response.end("A problem has occurred on our end - sorry folks!");
+//     } else {
+//       response.writeHead(200, { "content-type": "text/html" });
+//       response.end(file);
+//     }
+//   });
+// };
 
 // Takes an array in the form ['name', 'answer1', 'answer2', ... , 'answer7', '']
 // Reduces and filters to give a single house name based on the most relevant answers
@@ -94,19 +95,6 @@ const handleCreateNewUser = (url, request, response) => {
             "<h1>Sorry, there's been an error at hat HQ, are you a muggle?</h1>"
           );
         } else {
-          response.writeHead(301, {
-            "Content-type": "text/html",
-            Location: "/"
-          });
-          const filePath = path.join(__dirname, "..", "public/index.html");
-          fs.readFile(filePath, (error, file) => {
-            if (error) {
-              console.log(error);
-              return;
-            } else {
-              response.end(file);
-            }
-          });
           // DO WE WANT TO REFRESH THE PAGE HERE?
           response.writeHead(301, {
             "Content-type": "text/html",
@@ -128,10 +116,10 @@ const handleCreateNewUser = (url, request, response) => {
             };
             const cookie = sign(userDetails, SECRET);
             response.writeHead(302, {
-              Location: "/trivia",
-              "Set-Cookie": `Login=${cookie}; HttpOnly; Max-Age=9000`
+              Location: "/public/html/trivia.html",
+              "Set-Cookie": `jwt=${cookie}; HttpOnly; Max-Age=9000`
             });
-            return response.end();
+            return response.end(file);
         }
       });
         
@@ -168,11 +156,11 @@ const handleLogin = (request, response) => {
               response.writeHead(
                 302,
                 {
-                  'Location': '/trivia',
+                  'Location': '/public/html/trivia.html',
                   'Set-Cookie': `jwt=${cookie}; HttpOnly; Max-Age=10`
                 }
               );
-              return response.end();
+             response.end(file);
               } else {
                 response.writeHead(500, "Content-Type: text/html");
                 response.end(
@@ -227,5 +215,5 @@ module.exports = {
   handle404,
   handlePublic,
   handleLogin,
-  serveTrivia
+  // serveTrivia
 };

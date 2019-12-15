@@ -16,9 +16,9 @@ const router = (request, response) => {
   if (endpoint === "/") {
     handleHome(response);
   } 
-  else if (endpoint === "/trivia") {
-    serveTrivia(response);
-  } else if (endpoint === "/houses") {
+  // else if (endpoint === "/trivia") {
+  //   serveTrivia(response);
+  else if (endpoint === "/houses") {
     handleGettingUsers(response);
   } else if (endpoint === "/create-user") {
     handleCreateNewUser(endpoint, request, response);
