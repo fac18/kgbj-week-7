@@ -100,7 +100,6 @@ const handleCreateNewUser = (url, request, response) => {
           );
           console.log(err);
         } else {
-          // DO WE WANT TO REFRESH THE PAGE HERE?
           response.writeHead(301, {
             "Content-type": "text/html",
             Location: "/"
@@ -143,8 +142,8 @@ const handleLogin = (request, response) => {
         console.log({password})
         bcrypt.compare(password, storedPassword, (err, res) => {
           if (err) console.log(err);
-          else if (res) {
-            
+          else 
+          if (res) { 
             const cookie = sign(userDetails, SECRET);
             console.log({cookie});
               response.writeHead(
@@ -156,7 +155,10 @@ const handleLogin = (request, response) => {
               );
               return response.end();
               } else {
-              console.log("your password is wrong")
+                response.writeHead(500, "Content-Type: text/html");
+                response.end(
+                  "<h1>Wrong password!</h1>"
+                );
             }
            
         });
@@ -164,6 +166,46 @@ const handleLogin = (request, response) => {
     })
   })
 }
+
+// const handleLogin = (request, response) => {
+//   let allData = "";
+//   request.on("data", chunk => {
+//     allData += chunk;
+//   });
+//   request.on("end", () => {
+//     // const { username, password } = qs.parse(allData);
+//     const loginInfo = queryString.parse(allData);
+//     let userDetails = { user: `${loginInfo.name}`, pass: `${loginInfo.password}`};
+//     console.log({userDetails});
+//     let password = userDetails.pass;
+//     getQueries.getStoredPassword(userDetails.user, (err, res) => {
+//       if (err) {console.log("wrong password has been inputted");}
+//       else {
+//         let storedPassword = res[0].password;
+//         console.log({storedPassword})
+//         console.log({password})
+//         bcrypt.compare(password, storedPassword, (err, res) => {
+//           if (err) console.log(err);
+//           else if (res) { 
+//             const cookie = sign(userDetails, SECRET);
+//             console.log({cookie});
+//               response.writeHead(
+//                 302,
+//                 {
+//                   'Location': '/trivia',
+//                   'Set-Cookie': `jwt=${cookie}; HttpOnly; Max-Age=10`
+//                 }
+//               );
+//               return response.end();
+//               } else {
+//               console.log("your password is wrong")
+//             }
+           
+//         });
+//       }
+//     })
+//   })
+// }
 
 // const handleLogin = (req, response) => {
 //   let data2 = "";
