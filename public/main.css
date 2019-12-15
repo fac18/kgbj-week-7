@@ -137,6 +137,10 @@ td {
   font-size: 1.2rem;
 }
 
+#logoutButton {
+  margin-right: 2em;
+}
+
 @media (min-width: 600px) {
   .entry {
     width: 15vw;
@@ -152,3 +156,5 @@ td {
     width: 15vw;
   }
 }
+
+
