@@ -21,6 +21,17 @@ let housepoints = {
   s: 0
 };
 
+// Logout button
+
+const logoutButton = document.getElementById("logoutButton");
+
+const logout = () => {
+  document.cookie = "jwt=; expires=01/01/1970; path=/;";
+  window.location.pathname="/";
+}
+
+logoutButton.addEventListener("click", logout);
+
 // Parses JSON data and appends it to the DOM as table rows and cells
 //in the callback of request, xhr.response (from back end) is passed as 'data' into our DOM function
 const updateDom = (err, data) => {
